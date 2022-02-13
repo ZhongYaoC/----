@@ -1,3 +1,9 @@
+paxos工程化中既然提出了master以及租约概念，那么也就需要避免raft、zab等共识中的问题：选举、防脑裂等
+
+
+
+
+
 phxpaxos中每个状态机对应一个paxos group，如果有多个业务可以使用多个状态机，从而对应多个paxos group，所以需要有group id标识组别，但是每个paxos group内部的实例是串行执行的，防止空洞产生，每个实例直接互不影响，上一个实例写入状态机并完成状态转移才可以开始下一个实例；不过从宏观上看，多个group的实例是并行执行。
 
 
@@ -14,7 +20,7 @@ phxpaxos中每个状态机对应一个paxos group，如果有多个业务可以�
 | 属性                       | 值含义                                      | 属性                             | 值含义                                      |                                          |
 | proposalID               | 提案号                                      | m_llProposalID                 | 提案号                                      | 两者均为uint64_t                             |
 | higestReceivedProposalID | acceptor发来的promise消息中有其已接受的value对应的提案号（当proposer收到多个带value的promise时，此值用于挑选最大提案号的value） | m_oHighestOtherPreAcceptBallot |                                          | 同，不过使用了二元组标识提案号                          |
-| higestPromisedProposalID | 曾收到过的acceptor发来的promise消息中的最大提案号（用于配合寻找下个提案号） | m_llHighestOtherProposalID     | 拒绝了本次提案的别的proposer发出过的最大提案号（提案号的比较，封装在SetOtherProposalID中） | 同，不过使用了二元组标识提案号                          |
+| higestPromisedProposalID | 曾收到过的acceptor发来的promise消息中的最大提案号（用于配合寻找下个提案号） | m_llHighestOtherProposalID     | 拒绝了本次提案的别的proposer发出过的最大提案号（提案号的比较，封装在SetOtherProposalID中） | 同                                        |
 | value                    | 提案值                                      | m_sValue                       | 提案值                                      | keyspace中是ByteBuffer；Phx中是简单的string      |
 | numProposals             | 提案次数（第一和第二阶段共用）                          |                                |                                          |                                          |
 |                          |                                          |                                |                                          |                                          |
@@ -23,7 +29,11 @@ phxpaxos中每个状态机对应一个paxos group，如果有多个业务可以�
 | promisedProposalID       | 曾回复（promise）过的最大提案号（即之前对于prepare的肯定回复）   | m_oPromiseBallot               |                                          | 同，但phx在acceptor中采用二元组，接收到来自proposer的消息后根据消息内容构造出该值 |
 | acceptedProposalID       | 之前所接受提案的提案号                              | m_oAcceptedBallot              |                                          | 此值对应propser state中的higestReceivedProposalID |
 | acceptedValue            | 提案值                                      | m_sAcceptedValue               | 提案值                                      | 同proposerState                           |
-|                          |                                          |                                |                                          |                                          |
+| **LearnerState**         |                                          |                                |                                          |                                          |
+|                          |                                          | 属性                             | 值                                        |                                          |
+|                          |                                          | string m_sLearnedValue         |                                          |                                          |
+|                          |                                          | bool m_bIsLearned              |                                          |                                          |
+|                          |                                          | m_oPaxosLog                    |                                          |                                          |
 
 
 
@@ -113,7 +123,7 @@ PS：似乎是从消息的一整个流程去考虑的超时，即消息发出-�
 
 1a. `void ProposerState :: NewPrepare()`
 
-选取提案号采用不同的策略
+选取提案号采用了不同的策略，每次提案号+1；proposer发送时提案号和本节点号分开发出，而acceptor收到后，会将消息中的提案号和proposer节点号拼接出Ballot，acceptor两个阶段的判定时均使用Ballot；acceptor发出的自身节点的nodeid用于判定收到的消息数量，同时利用set< nodeid>可避免消息的重复（如双网口同时发出完全相同的报文）
 
 ![phx图片1](F:\Markdown\研一上\图片\phx图片1.png)
 
@@ -181,21 +191,31 @@ proposer检查acceptor的回复`void Proposer :: OnAcceptReply(const PaxosMsg & 
 
 
 
-#### 学习值（实例的对齐）
+#### 学习值（实例的对齐）:
 
-learner询问其他机器的相同编号的实例，如果发现该实例在其他机器已经被“销毁”，则说明该实例值已经被确定，直接将值拉取写入自己的当前实例中，然后继续询问下一个实例，直到实例编号和其他机器一样（似乎和paxos有些不同，paxos是learner被动接受实例值）
-
-
+learner询问其他机器的相同编号的实例，如果发现该实例在其他机器已经被“销毁”，则说明该实例值已经被确定，直接将值拉取写入自己的当前实例中，然后继续询问下一个实例，直到实例编号和其他机器一样（提案的追赶，不是共识阶段的学习）
 
 
 
+##### chosen后的通知
+
+当Proposer检查accept reply获知某个提案被选中后，通过BroadcastMessage_Type_RunSelf_Final消息通知所有节点，其中包含自身节点；如果消息中的提案号和节点保存的accepted 提案相同，则learner更新状态信息（因为此提案值和acceptor的相同，所以不需要再次落盘，更新内存状态即可）。另如果存在follower节点，则将数据同步至follower（follower节点不参与共识，类似于热备节点）
+
+处理函数为OnProposerSendSuccess
+
+##### 提案值追赶：
+
+当节点的实例号落后，则无法参与到当前阶段的共识提案，所以需要由learner主动追赶欠缺的实例，learner将当前节点的实例号、节点号打包，通过MsgType_PaxosLearner_AskforLearn消息发送给除自身外其他节点，
+
+
+
+**LearnerSender实现中涉及的锁的应用**：
+
+`WaitToSend`
 
 
 
 
-
-
-定时器为何使用vector，既然每次pushback新的定时器，然后再push_heap，类似维护为堆，何不直接用set或heap，定制好排序函数
 
 
 
@@ -210,6 +230,8 @@ phxpaxos采用消息队列机制，而非select下直接处理，即所有的pax
 ~~如果消息的两阶段在本轮循环内未完成，就会重传消息（重跑对应流程），而且如果收到过任一拒绝回复（即使不是大多数拒绝），提案号就会提高；~~
 
 **Detail**：系统启动时，设置初始超时时长为1000ms，则初始化时前面所有流程“空跑”，`newvalue`开始paxos算法，内部会新增定时器，如prepare超时定时器，则在后续循环中，根据定时器的实例id和对应消息类型处理超时错误，并且处理定时器函数本身会返回下一个最近的超时时间点，此时间用于消息队列的阻塞时长，阻塞时长内收到对应消息则会相应移除定时器；超时未收到则触发会在下个循环处理超时（下个循环处理超时，相比于select会不会影响效率，额似乎没啥影响）；为定位不同的超时处理机制，所以每个定时器会用实例id和消息类型标记
+
+> 定时器为何使用vector，既然每次pushback新的定时器，然后再push_heap，类似维护为堆，何不直接用set或heap，定制好排序函数
 
 
 
