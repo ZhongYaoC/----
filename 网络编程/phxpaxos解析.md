@@ -363,7 +363,7 @@ NetWork基类，其实现有DFNetWork；Node为其友元，同时包含一个Nod
 
 ##### 成员函数
 
-OnReceiveMessage：调用pNode的OnReceiveMessage处理数据接收，最终通过Instance加入到IOloop的消息队列；只要入队即返回，实际消息的处理异步完成
+OnReceiveMessage：调用pNode的OnReceiveMessage处理数据接收，最终通过Instance加入到IOloop的消息队列；只要入队即返回，实际消息的接收处理异步完成
 
 ### Src/communication/tcp目录
 

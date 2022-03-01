@@ -16,9 +16,27 @@ key-value键值对数据库
 
 
 
-同时只能单进程访问某特定数据库
+同时只能单进程访问某特定数据库，但支持多线程
 
 无内置client-server支持
+
+
+
+leveldb为了提高写效率，所有的写均为顺序写，所以每次对于key的增删改操作，都不会去实际的修改db中的数据，而是直接插入一份新的kv数据；增加和修改就均为Put操作，删除时是直接插入一个空value的key，这样就产生了大量的key冗余，相同的key值不能在db中存在多个不同的value，占用了大量的磁盘空间，所以需要做compact，将相同的key做合并，并删除旧的key。
+
+前面提到的删除操作，插入一个空value的key，但有些key的value的确是空的，所以需要区分是删除后的mock的kv数据还是真实的kv数据，使用ValueType标识：
+
+```c++
+enum ValueType
+{
+  kTypeDeletion = 0x0,
+  kTypeValue = 0x1
+};
+```
+
+同时每次更新操作（Put/Delete）时都拥有一个版本，由SequenceNumber标识，整个db有一个全局值保存着当前使用的SequenceNumber；`typedef uint64_t SequenceNumber;//其中SequenceNumber占56bit，剩余8bit为ValueType`
+
+
 
 
 
@@ -90,4 +108,77 @@ leveldb现在的最新版本实际提供了windows版本，不需要为了移植
 >static的作用域
 >
 >全局静态变量、局部静态变量
+>
+>类的静态成员：这个成员属于整个类，而不是某个对象，不能被某个对象使用，*this也不可以；所以定义和初始化要在类外部，同时初始化时类外部不能出现static关键字
 
+
+
+> MemoryBarrier？？
+
+
+
+通过把拷贝和赋值构造函数写到类的private域中，禁止了类的拷贝操作
+
+
+
+
+
+操作文件时使用？？内存映射？？
+
+
+
+
+
+compact的触发时机：
+
+1、db恢复后，对重跑的log record实施compact，写入sst
+
+2、手动触发compact，将指定的key范围写入
+
+3、写入key时，mmtable满，则将此mmtable转为immutable mmtable，生成新的mmtable，并执行immutable mmtable的compact（即有immutable mmtable时），写入到sst（因为level-0的compact消耗最大，所以从mmtable dump的sstable，可以直接选择一个合适的level写入，而不是必须放在level-0，但此时需要处理mmtable中存在的冗余key吧？？）
+
+4、某level的sstable达到阈值，如level-0的sstable count达到一定限度，非level-0的sstable的总size达到一定限度
+
+5、get操作时，如果有超过多个sstable进行了IO，检查最后一个sstable的allowseek是否耗尽
+
+
+
+
+
+
+
+
+
+1、正在运行过程中，拷贝文件，是否会出错
+
+
+
+1）put一个新key后，再进一步的get key前，程序直接sleep 10s，此时拷贝整个文件，log文件会报错，显示正在被使用中，其他文件不受影响
+
+2）正在大量put时，拷贝文件
+
+3）正在遍历时，拷贝文件
+
+同上
+
+![leveldb -- copy while running1](F:\Markdown\研一上\图片\leveldb -- copy while running1.png)
+
+
+
+
+
+
+
+2、遍历已存在的库，然后写入到新的库中
+
+首先，计划随机写入一些key value对，凑成一个较有规模的数据库；然后遍历所有key，形成新库
+
+再已有库的基础上再次运行，会生成ldb（原来叫sst）文件，即sstable，从内存转到磁盘；所以结束上次程序后，重跑原有的键值对会触发原有内容的落盘；A：属于open的逻辑，open时会对上次未落盘的log record重跑，形成sst
+
+![leveldb -- compare copy](F:\Markdown\研一上\图片\leveldb -- compare copy.png)
+
+
+
+3、遍历正在操的库，然后写入到新的库中
+
+如果遍历的线程更快，怎么确保数据一致？？
