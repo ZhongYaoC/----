@@ -107,7 +107,7 @@ A. prepare超时处理（**关注超时处理1**）
 
 直接重新开始preparing阶段
 
-B. proposa超时处理（**关注超时处理2**）
+B. proposal超时处理（**关注超时处理2**）
 
 直接重新开始proposing阶段
 

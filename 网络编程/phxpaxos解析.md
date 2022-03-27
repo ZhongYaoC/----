@@ -51,7 +51,7 @@ Q：这些状态信息是需要落盘的，防止宕机重启后数据丢失，�
 
 **Detail**：acceptor收到prepare后，首先检查prepare msg中的提案号是不是大于等于（可能有proposer重发消息）自己曾经回复（promise）过的最大提案号，小于代表acceptor可以拒绝此次提案，所以需要对应的拒绝回复消息，消息封装为[实例号、proposer节点号、提案号、曾回复过的最大提案号]；如果提案号通过检查，则更新acceptor曾promise的最大提案号`promisedProposalID`；此时有两种情况：
 
-1）此acceptor从未接受过提案值
+1）此acceptor从未接受过提案值  
 
 消息中封装[实例号、proposer节点号、提案号]
 

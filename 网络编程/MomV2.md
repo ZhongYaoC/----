@@ -187,7 +187,7 @@ tagDataHead(源ip、port、目的ip、port、长度、发送时间) + 数据
 
 利用CStreamPack将报文组装完毕；
 
-报文格式和收到的一样，不过数据部分是回复包结构```tagAnswReponse```
+报文格式和收到的一样，不过数据部分是xin回复包结构```tagAnswReponse```
 
 报文结构：
 
