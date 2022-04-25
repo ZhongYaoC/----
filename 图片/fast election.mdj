@@ -1,0 +1,2452 @@
+{
+	"_type": "Project",
+	"_id": "AAAAAAFF+h6SjaM2Hec=",
+	"name": "Untitled",
+	"ownedElements": [
+		{
+			"_type": "UMLModel",
+			"_id": "AAAAAAFF+qBWK6M3Z8Y=",
+			"_parent": {
+				"$ref": "AAAAAAFF+h6SjaM2Hec="
+			},
+			"name": "Model",
+			"ownedElements": [
+				{
+					"_type": "UMLClassDiagram",
+					"_id": "AAAAAAFF+qBtyKM79qY=",
+					"_parent": {
+						"$ref": "AAAAAAFF+qBWK6M3Z8Y="
+					},
+					"name": "Main",
+					"defaultDiagram": true
+				}
+			]
+		},
+		{
+			"_type": "DFDDataFlowModel",
+			"_id": "AAAAAAF/rF3m0HGutTg=",
+			"_parent": {
+				"$ref": "AAAAAAFF+h6SjaM2Hec="
+			},
+			"name": "DataFlowModel1",
+			"ownedElements": [
+				{
+					"_type": "DFDDiagram",
+					"_id": "AAAAAAF/rF3m0HGvyyU=",
+					"_parent": {
+						"$ref": "AAAAAAF/rF3m0HGutTg="
+					},
+					"name": "DFDDiagram1"
+				}
+			]
+		},
+		{
+			"_type": "FCFlowchart",
+			"_id": "AAAAAAF/rF+aUHHVCH4=",
+			"_parent": {
+				"$ref": "AAAAAAFF+h6SjaM2Hec="
+			},
+			"name": "Flowchart1",
+			"ownedElements": [
+				{
+					"_type": "FCFlowchartDiagram",
+					"_id": "AAAAAAF/rF+aUHHW+f8=",
+					"_parent": {
+						"$ref": "AAAAAAF/rF+aUHHVCH4="
+					},
+					"name": "FlowchartDiagram1",
+					"ownedViews": [
+						{
+							"_type": "FCProcessView",
+							"_id": "AAAAAAF/rF/BdnHcC+8=",
+							"_parent": {
+								"$ref": "AAAAAAF/rF+aUHHW+f8="
+							},
+							"model": {
+								"$ref": "AAAAAAF/rF/BdnHaBBI="
+							},
+							"subViews": [
+								{
+									"_type": "LabelView",
+									"_id": "AAAAAAF/rF/Bd3HdlS8=",
+									"_parent": {
+										"$ref": "AAAAAAF/rF/BdnHcC+8="
+									},
+									"font": "Arial;13;0",
+									"left": 210,
+									"top": 90,
+									"width": 116,
+									"height": 13,
+									"text": "开始选举",
+									"wordWrap": true
+								}
+							],
+							"font": "Arial;13;0",
+							"left": 200,
+							"top": 80,
+							"width": 136,
+							"height": 48,
+							"nameLabel": {
+								"$ref": "AAAAAAF/rF/Bd3HdlS8="
+							}
+						},
+						{
+							"_type": "FCProcessView",
+							"_id": "AAAAAAF/rF/m03Hlk7I=",
+							"_parent": {
+								"$ref": "AAAAAAF/rF+aUHHW+f8="
+							},
+							"model": {
+								"$ref": "AAAAAAF/rF/m03HjOwU="
+							},
+							"subViews": [
+								{
+									"_type": "LabelView",
+									"_id": "AAAAAAF/rF/m03Hmbhc=",
+									"_parent": {
+										"$ref": "AAAAAAF/rF/m03Hlk7I="
+									},
+									"font": "Arial;13;0",
+									"left": 226,
+									"top": 186,
+									"width": 78,
+									"height": 13,
+									"text": "自增逻辑时钟",
+									"wordWrap": true
+								}
+							],
+							"font": "Arial;13;0",
+							"left": 216,
+							"top": 176,
+							"width": 98,
+							"height": 33,
+							"nameLabel": {
+								"$ref": "AAAAAAF/rF/m03Hmbhc="
+							}
+						},
+						{
+							"_type": "UMLNoteView",
+							"_id": "AAAAAAF/rGATAnHsbfo=",
+							"_parent": {
+								"$ref": "AAAAAAF/rF+aUHHW+f8="
+							},
+							"font": "Arial;13;0",
+							"left": 432,
+							"top": 192,
+							"width": 124,
+							"height": 40,
+							"text": "此值在选举结束后\n会成为epoch"
+						},
+						{
+							"_type": "UMLNoteLinkView",
+							"_id": "AAAAAAF/rGATI3HvCag=",
+							"_parent": {
+								"$ref": "AAAAAAF/rF+aUHHW+f8="
+							},
+							"font": "Arial;13;0",
+							"head": {
+								"$ref": "AAAAAAF/rGATAnHsbfo="
+							},
+							"tail": {
+								"$ref": "AAAAAAF/rF/m03Hlk7I="
+							},
+							"lineStyle": 1,
+							"points": "314:196;431:206"
+						},
+						{
+							"_type": "FCProcessView",
+							"_id": "AAAAAAF/rGGR8nH9xr8=",
+							"_parent": {
+								"$ref": "AAAAAAF/rF+aUHHW+f8="
+							},
+							"model": {
+								"$ref": "AAAAAAF/rGGR8nH7kRk="
+							},
+							"subViews": [
+								{
+									"_type": "LabelView",
+									"_id": "AAAAAAF/rGGR8nH+gNE=",
+									"_parent": {
+										"$ref": "AAAAAAF/rGGR8nH9xr8="
+									},
+									"font": "Arial;13;0",
+									"left": 242,
+									"top": 266,
+									"width": 54.18994140625,
+									"height": 13,
+									"text": "发出选票",
+									"wordWrap": true
+								}
+							],
+							"font": "Arial;13;0",
+							"left": 232,
+							"top": 256,
+							"width": 74.18994140625,
+							"height": 33,
+							"nameLabel": {
+								"$ref": "AAAAAAF/rGGR8nH+gNE="
+							}
+						},
+						{
+							"_type": "FCFlowView",
+							"_id": "AAAAAAF/rGIBAnIM078=",
+							"_parent": {
+								"$ref": "AAAAAAF/rF+aUHHW+f8="
+							},
+							"model": {
+								"$ref": "AAAAAAF/rGIBAnIKfXI="
+							},
+							"subViews": [
+								{
+									"_type": "EdgeLabelView",
+									"_id": "AAAAAAF/rGIBAnINyjY=",
+									"_parent": {
+										"$ref": "AAAAAAF/rGIBAnIM078="
+									},
+									"model": {
+										"$ref": "AAAAAAF/rGIBAnIKfXI="
+									},
+									"visible": false,
+									"font": "Arial;13;0",
+									"left": 280,
+									"top": 144,
+									"height": 13,
+									"alpha": 1.5707963267948966,
+									"distance": 15,
+									"hostEdge": {
+										"$ref": "AAAAAAF/rGIBAnIM078="
+									},
+									"edgePosition": 1
+								}
+							],
+							"font": "Arial;13;0",
+							"head": {
+								"$ref": "AAAAAAF/rF/m03Hlk7I="
+							},
+							"tail": {
+								"$ref": "AAAAAAF/rF/BdnHcC+8="
+							},
+							"lineStyle": 2,
+							"points": "266:127;266:176",
+							"nameLabel": {
+								"$ref": "AAAAAAF/rGIBAnINyjY="
+							}
+						},
+						{
+							"_type": "FCFlowView",
+							"_id": "AAAAAAF/rGIKGnIV0Vk=",
+							"_parent": {
+								"$ref": "AAAAAAF/rF+aUHHW+f8="
+							},
+							"model": {
+								"$ref": "AAAAAAF/rGIKGnITB2E="
+							},
+							"subViews": [
+								{
+									"_type": "EdgeLabelView",
+									"_id": "AAAAAAF/rGIKGnIWojk=",
+									"_parent": {
+										"$ref": "AAAAAAF/rGIKGnIV0Vk="
+									},
+									"model": {
+										"$ref": "AAAAAAF/rGIKGnITB2E="
+									},
+									"visible": false,
+									"font": "Arial;13;0",
+									"left": 279,
+									"top": 225,
+									"height": 13,
+									"alpha": 1.5707963267948966,
+									"distance": 15,
+									"hostEdge": {
+										"$ref": "AAAAAAF/rGIKGnIV0Vk="
+									},
+									"edgePosition": 1
+								}
+							],
+							"font": "Arial;13;0",
+							"head": {
+								"$ref": "AAAAAAF/rGGR8nH9xr8="
+							},
+							"tail": {
+								"$ref": "AAAAAAF/rF/m03Hlk7I="
+							},
+							"lineStyle": 2,
+							"points": "265:208;265:256",
+							"nameLabel": {
+								"$ref": "AAAAAAF/rGIKGnIWojk="
+							}
+						},
+						{
+							"_type": "UMLNoteView",
+							"_id": "AAAAAAF/rGIZxXIclqw=",
+							"_parent": {
+								"$ref": "AAAAAAF/rF+aUHHW+f8="
+							},
+							"font": "Arial;13;0",
+							"left": 375.18994140625,
+							"top": 256,
+							"width": 73.81005859375,
+							"height": 25,
+							"text": "投给自己"
+						},
+						{
+							"_type": "UMLNoteLinkView",
+							"_id": "AAAAAAF/rGIZ5XIfOcY=",
+							"_parent": {
+								"$ref": "AAAAAAF/rF+aUHHW+f8="
+							},
+							"font": "Arial;13;0",
+							"head": {
+								"$ref": "AAAAAAF/rGIZxXIclqw="
+							},
+							"tail": {
+								"$ref": "AAAAAAF/rGGR8nH9xr8="
+							},
+							"lineStyle": 1,
+							"points": "306:271;374:269"
+						},
+						{
+							"_type": "FCDecisionView",
+							"_id": "AAAAAAF/rGKYl3ImZYQ=",
+							"_parent": {
+								"$ref": "AAAAAAF/rF+aUHHW+f8="
+							},
+							"model": {
+								"$ref": "AAAAAAF/rGKYl3Ik2jU="
+							},
+							"subViews": [
+								{
+									"_type": "LabelView",
+									"_id": "AAAAAAF/rGKYl3InYeg=",
+									"_parent": {
+										"$ref": "AAAAAAF/rGKYl3ImZYQ="
+									},
+									"font": "Arial;13;0",
+									"left": 227.084716796875,
+									"top": 350,
+									"width": 86.16943359375,
+									"height": 28,
+									"text": "LOOKING状态",
+									"wordWrap": true
+								}
+							],
+							"font": "Arial;13;0",
+							"left": 184,
+							"top": 336,
+							"width": 172.3388671875,
+							"height": 56,
+							"nameLabel": {
+								"$ref": "AAAAAAF/rGKYl3InYeg="
+							}
+						},
+						{
+							"_type": "FCFlowView",
+							"_id": "AAAAAAF/rGLPEnIwe9U=",
+							"_parent": {
+								"$ref": "AAAAAAF/rF+aUHHW+f8="
+							},
+							"model": {
+								"$ref": "AAAAAAF/rGLPEnIuAbg="
+							},
+							"subViews": [
+								{
+									"_type": "EdgeLabelView",
+									"_id": "AAAAAAF/rGLPEnIxRk4=",
+									"_parent": {
+										"$ref": "AAAAAAF/rGLPEnIwe9U="
+									},
+									"model": {
+										"$ref": "AAAAAAF/rGLPEnIuAbg="
+									},
+									"visible": false,
+									"font": "Arial;13;0",
+									"left": 283,
+									"top": 305,
+									"height": 13,
+									"alpha": 1.5707963267948966,
+									"distance": 15,
+									"hostEdge": {
+										"$ref": "AAAAAAF/rGLPEnIwe9U="
+									},
+									"edgePosition": 1
+								}
+							],
+							"font": "Arial;13;0",
+							"head": {
+								"$ref": "AAAAAAF/rGKYl3ImZYQ="
+							},
+							"tail": {
+								"$ref": "AAAAAAF/rGGR8nH9xr8="
+							},
+							"lineStyle": 2,
+							"points": "269:288;269:336",
+							"nameLabel": {
+								"$ref": "AAAAAAF/rGLPEnIxRk4="
+							}
+						},
+						{
+							"_type": "FCProcessView",
+							"_id": "AAAAAAF/rGL+HHI7QKg=",
+							"_parent": {
+								"$ref": "AAAAAAF/rF+aUHHW+f8="
+							},
+							"model": {
+								"$ref": "AAAAAAF/rGL+HHI5S2Q="
+							},
+							"subViews": [
+								{
+									"_type": "LabelView",
+									"_id": "AAAAAAF/rGL+HHI8aE4=",
+									"_parent": {
+										"$ref": "AAAAAAF/rGL+HHI7QKg="
+									},
+									"font": "Arial;13;0",
+									"left": 226,
+									"top": 426,
+									"width": 78,
+									"height": 13,
+									"text": "接收外部选票",
+									"wordWrap": true
+								}
+							],
+							"font": "Arial;13;0",
+							"left": 216,
+							"top": 416,
+							"width": 98,
+							"height": 33,
+							"nameLabel": {
+								"$ref": "AAAAAAF/rGL+HHI8aE4="
+							}
+						},
+						{
+							"_type": "FCFlowView",
+							"_id": "AAAAAAF/rGMqP3JS00s=",
+							"_parent": {
+								"$ref": "AAAAAAF/rF+aUHHW+f8="
+							},
+							"model": {
+								"$ref": "AAAAAAF/rGMqP3JQGe8="
+							},
+							"subViews": [
+								{
+									"_type": "EdgeLabelView",
+									"_id": "AAAAAAF/rGMqP3JTzO4=",
+									"_parent": {
+										"$ref": "AAAAAAF/rGMqP3JS00s="
+									},
+									"model": {
+										"$ref": "AAAAAAF/rGMqP3JQGe8="
+									},
+									"font": "Arial;13;0",
+									"left": 274,
+									"top": 396,
+									"width": 13,
+									"height": 13,
+									"alpha": 1.5707963267948966,
+									"distance": 15,
+									"hostEdge": {
+										"$ref": "AAAAAAF/rGMqP3JS00s="
+									},
+									"edgePosition": 1,
+									"text": "是"
+								}
+							],
+							"font": "Arial;13;0",
+							"head": {
+								"$ref": "AAAAAAF/rGL+HHI7QKg="
+							},
+							"tail": {
+								"$ref": "AAAAAAF/rGKYl3ImZYQ="
+							},
+							"lineStyle": 2,
+							"points": "266:391;266:416",
+							"nameLabel": {
+								"$ref": "AAAAAAF/rGMqP3JTzO4="
+							}
+						},
+						{
+							"_type": "FCTerminatorView",
+							"_id": "AAAAAAF/rGQnFXJe4hs=",
+							"_parent": {
+								"$ref": "AAAAAAF/rF+aUHHW+f8="
+							},
+							"model": {
+								"$ref": "AAAAAAF/rGQnFXJcRNQ="
+							},
+							"subViews": [
+								{
+									"_type": "LabelView",
+									"_id": "AAAAAAF/rGQnFXJfWyU=",
+									"_parent": {
+										"$ref": "AAAAAAF/rGQnFXJe4hs="
+									},
+									"font": "Arial;13;0",
+									"left": 442,
+									"top": 354,
+									"width": 68.63720703125,
+									"height": 13,
+									"text": "结束选举",
+									"wordWrap": true
+								}
+							],
+							"font": "Arial;13;0",
+							"left": 432,
+							"top": 344,
+							"width": 88.63720703125,
+							"height": 33,
+							"nameLabel": {
+								"$ref": "AAAAAAF/rGQnFXJfWyU="
+							}
+						},
+						{
+							"_type": "FCFlowView",
+							"_id": "AAAAAAF/rGRXqHJ24RU=",
+							"_parent": {
+								"$ref": "AAAAAAF/rF+aUHHW+f8="
+							},
+							"model": {
+								"$ref": "AAAAAAF/rGRXqHJ065Q="
+							},
+							"subViews": [
+								{
+									"_type": "EdgeLabelView",
+									"_id": "AAAAAAF/rGRXqHJ3sVM=",
+									"_parent": {
+										"$ref": "AAAAAAF/rGRXqHJ24RU="
+									},
+									"model": {
+										"$ref": "AAAAAAF/rGRXqHJ065Q="
+									},
+									"font": "Arial;13;0",
+									"left": 387,
+									"top": 339,
+									"width": 13,
+									"height": 13,
+									"alpha": 1.5707963267948966,
+									"distance": 15,
+									"hostEdge": {
+										"$ref": "AAAAAAF/rGRXqHJ24RU="
+									},
+									"edgePosition": 1,
+									"text": "否"
+								}
+							],
+							"font": "Arial;13;0",
+							"head": {
+								"$ref": "AAAAAAF/rGQnFXJe4hs="
+							},
+							"tail": {
+								"$ref": "AAAAAAF/rGKYl3ImZYQ="
+							},
+							"lineStyle": 2,
+							"points": "355:360;432:360",
+							"nameLabel": {
+								"$ref": "AAAAAAF/rGRXqHJ3sVM="
+							}
+						},
+						{
+							"_type": "FCDecisionView",
+							"_id": "AAAAAAF/rGU9oHKH83U=",
+							"_parent": {
+								"$ref": "AAAAAAF/rF+aUHHW+f8="
+							},
+							"model": {
+								"$ref": "AAAAAAF/rGU9oHKFjT0="
+							},
+							"subViews": [
+								{
+									"_type": "LabelView",
+									"_id": "AAAAAAF/rGU9oHKIUew=",
+									"_parent": {
+										"$ref": "AAAAAAF/rGU9oHKH83U="
+									},
+									"font": "Arial;13;0",
+									"left": 223,
+									"top": 602.25,
+									"width": 78,
+									"height": 20.5,
+									"text": "选举轮次比较",
+									"wordWrap": true
+								}
+							],
+							"font": "Arial;13;0",
+							"left": 184,
+							"top": 592,
+							"width": 156,
+							"height": 41,
+							"nameLabel": {
+								"$ref": "AAAAAAF/rGU9oHKIUew="
+							}
+						},
+						{
+							"_type": "FCProcessView",
+							"_id": "AAAAAAF/rGWUCnKbCqo=",
+							"_parent": {
+								"$ref": "AAAAAAF/rF+aUHHW+f8="
+							},
+							"model": {
+								"$ref": "AAAAAAF/rGWUCnKZRMU="
+							},
+							"subViews": [
+								{
+									"_type": "LabelView",
+									"_id": "AAAAAAF/rGWUCnKcPfg=",
+									"_parent": {
+										"$ref": "AAAAAAF/rGWUCnKbCqo="
+									},
+									"font": "Arial;13;0",
+									"left": 234,
+									"top": 690,
+									"width": 54.18994140625,
+									"height": 13,
+									"text": "比较选票",
+									"wordWrap": true
+								}
+							],
+							"font": "Arial;13;0",
+							"left": 224,
+							"top": 680,
+							"width": 74.18994140625,
+							"height": 33,
+							"nameLabel": {
+								"$ref": "AAAAAAF/rGWUCnKcPfg="
+							}
+						},
+						{
+							"_type": "FCFlowView",
+							"_id": "AAAAAAF/rGWmynKkl9U=",
+							"_parent": {
+								"$ref": "AAAAAAF/rF+aUHHW+f8="
+							},
+							"model": {
+								"$ref": "AAAAAAF/rGWmynKiCLo="
+							},
+							"subViews": [
+								{
+									"_type": "EdgeLabelView",
+									"_id": "AAAAAAF/rGWmynKltXE=",
+									"_parent": {
+										"$ref": "AAAAAAF/rGWmynKkl9U="
+									},
+									"model": {
+										"$ref": "AAAAAAF/rGWmynKiCLo="
+									},
+									"font": "Arial;13;0",
+									"left": 265,
+									"top": 649,
+									"width": 26,
+									"height": 13,
+									"alpha": 1.5707963267948966,
+									"distance": 15,
+									"hostEdge": {
+										"$ref": "AAAAAAF/rGWmynKkl9U="
+									},
+									"edgePosition": 1,
+									"text": "相等"
+								}
+							],
+							"font": "Arial;13;0",
+							"head": {
+								"$ref": "AAAAAAF/rGWUCnKbCqo="
+							},
+							"tail": {
+								"$ref": "AAAAAAF/rGU9oHKH83U="
+							},
+							"lineStyle": 2,
+							"points": "264:632;264:680",
+							"nameLabel": {
+								"$ref": "AAAAAAF/rGWmynKltXE="
+							}
+						},
+						{
+							"_type": "FCProcessView",
+							"_id": "AAAAAAF/rGXA63Kulus=",
+							"_parent": {
+								"$ref": "AAAAAAF/rF+aUHHW+f8="
+							},
+							"model": {
+								"$ref": "AAAAAAF/rGXA63Ksetk="
+							},
+							"subViews": [
+								{
+									"_type": "LabelView",
+									"_id": "AAAAAAF/rGXA63KvN+E=",
+									"_parent": {
+										"$ref": "AAAAAAF/rGXA63Kulus="
+									},
+									"font": "Arial;13;0",
+									"left": 42,
+									"top": 602,
+									"width": 54.18994140625,
+									"height": 13,
+									"text": "无视",
+									"wordWrap": true
+								}
+							],
+							"font": "Arial;13;0",
+							"left": 32,
+							"top": 592,
+							"width": 74.18994140625,
+							"height": 33,
+							"nameLabel": {
+								"$ref": "AAAAAAF/rGXA63KvN+E="
+							}
+						},
+						{
+							"_type": "FCFlowView",
+							"_id": "AAAAAAF/rGXKE3K24W0=",
+							"_parent": {
+								"$ref": "AAAAAAF/rF+aUHHW+f8="
+							},
+							"model": {
+								"$ref": "AAAAAAF/rGXKE3K0Y5c="
+							},
+							"subViews": [
+								{
+									"_type": "EdgeLabelView",
+									"_id": "AAAAAAF/rGXKE3K34Qw=",
+									"_parent": {
+										"$ref": "AAAAAAF/rGXKE3K24W0="
+									},
+									"model": {
+										"$ref": "AAAAAAF/rGXKE3K0Y5c="
+									},
+									"font": "Arial;13;0",
+									"left": 130,
+									"top": 617,
+									"width": 26,
+									"height": 13,
+									"alpha": 1.5707963267948966,
+									"distance": 15,
+									"hostEdge": {
+										"$ref": "AAAAAAF/rGXKE3K24W0="
+									},
+									"edgePosition": 1,
+									"text": "小于"
+								}
+							],
+							"font": "Arial;13;0",
+							"head": {
+								"$ref": "AAAAAAF/rGXA63Kulus="
+							},
+							"tail": {
+								"$ref": "AAAAAAF/rGU9oHKH83U="
+							},
+							"lineStyle": 2,
+							"points": "184:608;105:608",
+							"nameLabel": {
+								"$ref": "AAAAAAF/rGXKE3K34Qw="
+							}
+						},
+						{
+							"_type": "FCProcessView",
+							"_id": "AAAAAAF/rGX3CXLA+sA=",
+							"_parent": {
+								"$ref": "AAAAAAF/rF+aUHHW+f8="
+							},
+							"model": {
+								"$ref": "AAAAAAF/rGX3CXK+KyE="
+							},
+							"subViews": [
+								{
+									"_type": "LabelView",
+									"_id": "AAAAAAF/rGX3CXLBwc0=",
+									"_parent": {
+										"$ref": "AAAAAAF/rGX3CXLA+sA="
+									},
+									"font": "Arial;13;0",
+									"left": 471,
+									"top": 602,
+									"width": 130,
+									"height": 13,
+									"text": "以外部选票的轮次为准",
+									"wordWrap": true
+								}
+							],
+							"font": "Arial;13;0",
+							"left": 461,
+							"top": 592,
+							"width": 150,
+							"height": 33,
+							"nameLabel": {
+								"$ref": "AAAAAAF/rGX3CXLBwc0="
+							}
+						},
+						{
+							"_type": "FCFlowView",
+							"_id": "AAAAAAF/rGYlDnLWfDM=",
+							"_parent": {
+								"$ref": "AAAAAAF/rF+aUHHW+f8="
+							},
+							"model": {
+								"$ref": "AAAAAAF/rGYlDnLU8G0="
+							},
+							"subViews": [
+								{
+									"_type": "EdgeLabelView",
+									"_id": "AAAAAAF/rGYlDnLXsxw=",
+									"_parent": {
+										"$ref": "AAAAAAF/rGYlDnLWfDM="
+									},
+									"model": {
+										"$ref": "AAAAAAF/rGYlDnLU8G0="
+									},
+									"font": "Arial;13;0",
+									"left": 386,
+									"top": 587,
+									"width": 26,
+									"height": 13,
+									"alpha": -4.641082226259334,
+									"distance": 14.035668847618199,
+									"hostEdge": {
+										"$ref": "AAAAAAF/rGYlDnLWfDM="
+									},
+									"edgePosition": 1,
+									"text": "大于"
+								}
+							],
+							"font": "Arial;13;0",
+							"head": {
+								"$ref": "AAAAAAF/rGX3CXLA+sA="
+							},
+							"tail": {
+								"$ref": "AAAAAAF/rGU9oHKH83U="
+							},
+							"lineStyle": 2,
+							"points": "339:608;461:608",
+							"nameLabel": {
+								"$ref": "AAAAAAF/rGYlDnLXsxw="
+							}
+						},
+						{
+							"_type": "UMLNoteView",
+							"_id": "AAAAAAF/rGcL83LkAMo=",
+							"_parent": {
+								"$ref": "AAAAAAF/rF+aUHHW+f8="
+							},
+							"font": "Arial;13;0",
+							"left": 464,
+							"top": 280,
+							"width": 124,
+							"height": 25,
+							"text": "本机处于选举状态"
+						},
+						{
+							"_type": "UMLNoteLinkView",
+							"_id": "AAAAAAF/rGcMFnLnr9k=",
+							"_parent": {
+								"$ref": "AAAAAAF/rF+aUHHW+f8="
+							},
+							"font": "Arial;13;0",
+							"head": {
+								"$ref": "AAAAAAF/rGcL83LkAMo="
+							},
+							"tail": {
+								"$ref": "AAAAAAF/rGKYl3ImZYQ="
+							},
+							"lineStyle": 1,
+							"points": "356:339;478:305"
+						},
+						{
+							"_type": "FCDecisionView",
+							"_id": "AAAAAAF/rGg9HXLzQuA=",
+							"_parent": {
+								"$ref": "AAAAAAF/rF+aUHHW+f8="
+							},
+							"model": {
+								"$ref": "AAAAAAF/rGg9HXLxGFs="
+							},
+							"subViews": [
+								{
+									"_type": "LabelView",
+									"_id": "AAAAAAF/rGg9HXL0GSw=",
+									"_parent": {
+										"$ref": "AAAAAAF/rGg9HXLzQuA="
+									},
+									"font": "Arial;13;0",
+									"left": 215,
+									"top": 751.5,
+									"width": 78,
+									"height": 15,
+									"text": "是否更新选票",
+									"wordWrap": true
+								}
+							],
+							"font": "Arial;13;0",
+							"left": 176,
+							"top": 744,
+							"width": 156,
+							"height": 30,
+							"nameLabel": {
+								"$ref": "AAAAAAF/rGg9HXL0GSw="
+							}
+						},
+						{
+							"_type": "FCFlowView",
+							"_id": "AAAAAAF/rGhf5HL7H8w=",
+							"_parent": {
+								"$ref": "AAAAAAF/rF+aUHHW+f8="
+							},
+							"model": {
+								"$ref": "AAAAAAF/rGhf5HL5/qU="
+							},
+							"subViews": [
+								{
+									"_type": "EdgeLabelView",
+									"_id": "AAAAAAF/rGhf5HL8Xgo=",
+									"_parent": {
+										"$ref": "AAAAAAF/rGhf5HL7H8w="
+									},
+									"model": {
+										"$ref": "AAAAAAF/rGhf5HL5/qU="
+									},
+									"visible": false,
+									"font": "Arial;13;0",
+									"left": 488,
+									"top": 692,
+									"height": 13,
+									"alpha": 1.5707963267948966,
+									"distance": 15,
+									"hostEdge": {
+										"$ref": "AAAAAAF/rGhf5HL7H8w="
+									},
+									"edgePosition": 1
+								}
+							],
+							"font": "Arial;13;0",
+							"head": {
+								"$ref": "AAAAAAF/rGWUCnKbCqo="
+							},
+							"tail": {
+								"$ref": "AAAAAAF/rGX3CXLA+sA="
+							},
+							"lineStyle": 2,
+							"points": "489:624;489:683;297:683",
+							"nameLabel": {
+								"$ref": "AAAAAAF/rGhf5HL8Xgo="
+							}
+						},
+						{
+							"_type": "FCProcessView",
+							"_id": "AAAAAAF/rGi5OHMGtwk=",
+							"_parent": {
+								"$ref": "AAAAAAF/rF+aUHHW+f8="
+							},
+							"model": {
+								"$ref": "AAAAAAF/rGi5N3MEhaU="
+							},
+							"subViews": [
+								{
+									"_type": "LabelView",
+									"_id": "AAAAAAF/rGi5OHMHgE0=",
+									"_parent": {
+										"$ref": "AAAAAAF/rGi5OHMGtwk="
+									},
+									"font": "Arial;13;0",
+									"left": 210,
+									"top": 826,
+									"width": 78,
+									"height": 13,
+									"text": "广播新的选票",
+									"wordWrap": true
+								}
+							],
+							"font": "Arial;13;0",
+							"left": 200,
+							"top": 816,
+							"width": 98,
+							"height": 33,
+							"nameLabel": {
+								"$ref": "AAAAAAF/rGi5OHMHgE0="
+							}
+						},
+						{
+							"_type": "FCFlowView",
+							"_id": "AAAAAAF/rGmMg3MVhOI=",
+							"_parent": {
+								"$ref": "AAAAAAF/rF+aUHHW+f8="
+							},
+							"model": {
+								"$ref": "AAAAAAF/rGmMg3MTgbw="
+							},
+							"subViews": [
+								{
+									"_type": "EdgeLabelView",
+									"_id": "AAAAAAF/rGmMg3MWWho=",
+									"_parent": {
+										"$ref": "AAAAAAF/rGmMg3MVhOI="
+									},
+									"model": {
+										"$ref": "AAAAAAF/rGmMg3MTgbw="
+									},
+									"font": "Arial;13;0",
+									"left": 267,
+									"top": 787,
+									"width": 13,
+									"height": 13,
+									"alpha": 1.5707963267948966,
+									"distance": 15,
+									"hostEdge": {
+										"$ref": "AAAAAAF/rGmMg3MVhOI="
+									},
+									"edgePosition": 1,
+									"text": "是"
+								}
+							],
+							"font": "Arial;13;0",
+							"head": {
+								"$ref": "AAAAAAF/rGi5OHMGtwk="
+							},
+							"tail": {
+								"$ref": "AAAAAAF/rGg9HXLzQuA="
+							},
+							"lineStyle": 2,
+							"points": "259:773;259:816",
+							"nameLabel": {
+								"$ref": "AAAAAAF/rGmMg3MWWho="
+							}
+						},
+						{
+							"_type": "FCFlowView",
+							"_id": "AAAAAAF/rGmwrHMpxhk=",
+							"_parent": {
+								"$ref": "AAAAAAF/rF+aUHHW+f8="
+							},
+							"model": {
+								"$ref": "AAAAAAF/rGmwrHMnnOU="
+							},
+							"subViews": [
+								{
+									"_type": "EdgeLabelView",
+									"_id": "AAAAAAF/rGmwrHMqI28=",
+									"_parent": {
+										"$ref": "AAAAAAF/rGmwrHMpxhk="
+									},
+									"model": {
+										"$ref": "AAAAAAF/rGmwrHMnnOU="
+									},
+									"visible": false,
+									"font": "Arial;13;0",
+									"left": 270,
+									"top": 721,
+									"height": 13,
+									"alpha": 1.5707963267948966,
+									"distance": 15,
+									"hostEdge": {
+										"$ref": "AAAAAAF/rGmwrHMpxhk="
+									},
+									"edgePosition": 1
+								}
+							],
+							"font": "Arial;13;0",
+							"head": {
+								"$ref": "AAAAAAF/rGg9HXLzQuA="
+							},
+							"tail": {
+								"$ref": "AAAAAAF/rGWUCnKbCqo="
+							},
+							"lineStyle": 2,
+							"points": "256:712;256:744",
+							"nameLabel": {
+								"$ref": "AAAAAAF/rGmwrHMqI28="
+							}
+						},
+						{
+							"_type": "FCProcessView",
+							"_id": "AAAAAAF/rGnPgnMzuCA=",
+							"_parent": {
+								"$ref": "AAAAAAF/rF+aUHHW+f8="
+							},
+							"model": {
+								"$ref": "AAAAAAF/rGnPgnMxjxo="
+							},
+							"subViews": [
+								{
+									"_type": "LabelView",
+									"_id": "AAAAAAF/rGnPg3M0/iI=",
+									"_parent": {
+										"$ref": "AAAAAAF/rGnPgnMzuCA="
+									},
+									"font": "Arial;13;0",
+									"left": 226,
+									"top": 914,
+									"width": 54.18994140625,
+									"height": 13,
+									"text": "更新票箱",
+									"wordWrap": true
+								}
+							],
+							"font": "Arial;13;0",
+							"left": 216,
+							"top": 904,
+							"width": 74.18994140625,
+							"height": 33,
+							"nameLabel": {
+								"$ref": "AAAAAAF/rGnPg3M0/iI="
+							}
+						},
+						{
+							"_type": "FCFlowView",
+							"_id": "AAAAAAF/rGnxC3M9FcI=",
+							"_parent": {
+								"$ref": "AAAAAAF/rF+aUHHW+f8="
+							},
+							"model": {
+								"$ref": "AAAAAAF/rGnxC3M7vnQ="
+							},
+							"subViews": [
+								{
+									"_type": "EdgeLabelView",
+									"_id": "AAAAAAF/rGnxC3M+1Bk=",
+									"_parent": {
+										"$ref": "AAAAAAF/rGnxC3M9FcI="
+									},
+									"model": {
+										"$ref": "AAAAAAF/rGnxC3M7vnQ="
+									},
+									"visible": false,
+									"font": "Arial;13;0",
+									"left": 270,
+									"top": 869,
+									"height": 13,
+									"alpha": 1.5707963267948966,
+									"distance": 15,
+									"hostEdge": {
+										"$ref": "AAAAAAF/rGnxC3M9FcI="
+									},
+									"edgePosition": 1
+								}
+							],
+							"font": "Arial;13;0",
+							"head": {
+								"$ref": "AAAAAAF/rGnPgnMzuCA="
+							},
+							"tail": {
+								"$ref": "AAAAAAF/rGi5OHMGtwk="
+							},
+							"lineStyle": 2,
+							"points": "256:848;256:904",
+							"nameLabel": {
+								"$ref": "AAAAAAF/rGnxC3M+1Bk="
+							}
+						},
+						{
+							"_type": "FCFlowView",
+							"_id": "AAAAAAF/rGod13NIqp4=",
+							"_parent": {
+								"$ref": "AAAAAAF/rF+aUHHW+f8="
+							},
+							"model": {
+								"$ref": "AAAAAAF/rGod13NGn6s="
+							},
+							"subViews": [
+								{
+									"_type": "EdgeLabelView",
+									"_id": "AAAAAAF/rGod13NJH+c=",
+									"_parent": {
+										"$ref": "AAAAAAF/rGod13NIqp4="
+									},
+									"model": {
+										"$ref": "AAAAAAF/rGod13NGn6s="
+									},
+									"font": "Arial;13;0",
+									"left": 469,
+									"top": 837,
+									"width": 13,
+									"height": 13,
+									"alpha": 1.5707963267948966,
+									"distance": 15,
+									"hostEdge": {
+										"$ref": "AAAAAAF/rGod13NIqp4="
+									},
+									"edgePosition": 1,
+									"text": "否"
+								}
+							],
+							"font": "Arial;13;0",
+							"head": {
+								"$ref": "AAAAAAF/rGnPgnMzuCA="
+							},
+							"tail": {
+								"$ref": "AAAAAAF/rGg9HXLzQuA="
+							},
+							"lineStyle": 2,
+							"points": "331:768;461:768;461:920;289:920",
+							"nameLabel": {
+								"$ref": "AAAAAAF/rGod13NJH+c="
+							}
+						},
+						{
+							"_type": "FCDecisionView",
+							"_id": "AAAAAAF/rGqJyHNVP9g=",
+							"_parent": {
+								"$ref": "AAAAAAF/rF+aUHHW+f8="
+							},
+							"model": {
+								"$ref": "AAAAAAF/rGqJyHNTN50="
+							},
+							"subViews": [
+								{
+									"_type": "LabelView",
+									"_id": "AAAAAAF/rGqJyHNWyf0=",
+									"_parent": {
+										"$ref": "AAAAAAF/rGqJyHNVP9g="
+									},
+									"font": "Arial;13;0",
+									"left": 155,
+									"top": 988.25,
+									"width": 182,
+									"height": 24.5,
+									"text": "是否有节点获得大多数选票",
+									"wordWrap": true
+								}
+							],
+							"font": "Arial;13;0",
+							"left": 64,
+							"top": 976,
+							"width": 364,
+							"height": 49,
+							"nameLabel": {
+								"$ref": "AAAAAAF/rGqJyHNWyf0="
+							}
+						},
+						{
+							"_type": "FCFlowView",
+							"_id": "AAAAAAF/rGtIZHNl05A=",
+							"_parent": {
+								"$ref": "AAAAAAF/rF+aUHHW+f8="
+							},
+							"model": {
+								"$ref": "AAAAAAF/rGtIZHNjtyo="
+							},
+							"subViews": [
+								{
+									"_type": "EdgeLabelView",
+									"_id": "AAAAAAF/rGtIZHNmrUY=",
+									"_parent": {
+										"$ref": "AAAAAAF/rGtIZHNl05A="
+									},
+									"model": {
+										"$ref": "AAAAAAF/rGtIZHNjtyo="
+									},
+									"visible": false,
+									"font": "Arial;13;0",
+									"left": 262,
+									"top": 949,
+									"height": 13,
+									"alpha": 1.5707963267948966,
+									"distance": 15,
+									"hostEdge": {
+										"$ref": "AAAAAAF/rGtIZHNl05A="
+									},
+									"edgePosition": 1
+								}
+							],
+							"font": "Arial;13;0",
+							"head": {
+								"$ref": "AAAAAAF/rGqJyHNVP9g="
+							},
+							"tail": {
+								"$ref": "AAAAAAF/rGnPgnMzuCA="
+							},
+							"lineStyle": 2,
+							"points": "248:936;248:976",
+							"nameLabel": {
+								"$ref": "AAAAAAF/rGtIZHNmrUY="
+							}
+						},
+						{
+							"_type": "FCProcessView",
+							"_id": "AAAAAAF/rGtUznNuHRM=",
+							"_parent": {
+								"$ref": "AAAAAAF/rF+aUHHW+f8="
+							},
+							"model": {
+								"$ref": "AAAAAAF/rGtUznNsSL0="
+							},
+							"subViews": [
+								{
+									"_type": "LabelView",
+									"_id": "AAAAAAF/rGtUznNvaik=",
+									"_parent": {
+										"$ref": "AAAAAAF/rGtUznNuHRM="
+									},
+									"font": "Arial;13;0",
+									"left": 194,
+									"top": 1074,
+									"width": 104.20947265625,
+									"height": 13,
+									"text": "等待finalTimeout",
+									"wordWrap": true
+								}
+							],
+							"font": "Arial;13;0",
+							"left": 184,
+							"top": 1064,
+							"width": 124.20947265625,
+							"height": 33,
+							"nameLabel": {
+								"$ref": "AAAAAAF/rGtUznNvaik="
+							}
+						},
+						{
+							"_type": "FCFlowView",
+							"_id": "AAAAAAF/rGtmDnN2Efk=",
+							"_parent": {
+								"$ref": "AAAAAAF/rF+aUHHW+f8="
+							},
+							"model": {
+								"$ref": "AAAAAAF/rGtmDnN0FQE="
+							},
+							"subViews": [
+								{
+									"_type": "EdgeLabelView",
+									"_id": "AAAAAAF/rGtmDnN348A=",
+									"_parent": {
+										"$ref": "AAAAAAF/rGtmDnN2Efk="
+									},
+									"model": {
+										"$ref": "AAAAAAF/rGtmDnN0FQE="
+									},
+									"font": "Arial;13;0",
+									"left": 256,
+									"top": 1037,
+									"width": 13,
+									"height": 13,
+									"alpha": 1.5707963267948966,
+									"distance": 15,
+									"hostEdge": {
+										"$ref": "AAAAAAF/rGtmDnN2Efk="
+									},
+									"edgePosition": 1,
+									"text": "是"
+								}
+							],
+							"font": "Arial;13;0",
+							"head": {
+								"$ref": "AAAAAAF/rGtUznNuHRM="
+							},
+							"tail": {
+								"$ref": "AAAAAAF/rGqJyHNVP9g="
+							},
+							"lineStyle": 2,
+							"points": "248:1024;248:1064",
+							"nameLabel": {
+								"$ref": "AAAAAAF/rGtmDnN348A="
+							}
+						},
+						{
+							"_type": "FCFlowView",
+							"_id": "AAAAAAF/rGyJt3OS+PM=",
+							"_parent": {
+								"$ref": "AAAAAAF/rF+aUHHW+f8="
+							},
+							"model": {
+								"$ref": "AAAAAAF/rGyJt3OQZbQ="
+							},
+							"subViews": [
+								{
+									"_type": "EdgeLabelView",
+									"_id": "AAAAAAF/rGyJt3OT6eI=",
+									"_parent": {
+										"$ref": "AAAAAAF/rGyJt3OS+PM="
+									},
+									"model": {
+										"$ref": "AAAAAAF/rGyJt3OQZbQ="
+									},
+									"font": "Arial;13;0",
+									"top": 674,
+									"width": 13,
+									"height": 13,
+									"alpha": 1.5707963267948966,
+									"distance": 15,
+									"hostEdge": {
+										"$ref": "AAAAAAF/rGyJt3OS+PM="
+									},
+									"edgePosition": 1,
+									"text": "否"
+								}
+							],
+							"font": "Arial;13;0",
+							"head": {
+								"$ref": "AAAAAAF/rGKYl3ImZYQ="
+							},
+							"tail": {
+								"$ref": "AAAAAAF/rGqJyHNVP9g="
+							},
+							"lineStyle": 2,
+							"points": "64:1000;21:1000;21:363;184:363",
+							"nameLabel": {
+								"$ref": "AAAAAAF/rGyJt3OT6eI="
+							}
+						},
+						{
+							"_type": "FCDecisionView",
+							"_id": "AAAAAAF/rG3moHPCB9I=",
+							"_parent": {
+								"$ref": "AAAAAAF/rF+aUHHW+f8="
+							},
+							"model": {
+								"$ref": "AAAAAAF/rG3moHPASY0="
+							},
+							"subViews": [
+								{
+									"_type": "LabelView",
+									"_id": "AAAAAAF/rG3moHPDToA=",
+									"_parent": {
+										"$ref": "AAAAAAF/rG3moHPCB9I="
+									},
+									"font": "Arial;13;0",
+									"left": 122.068603515625,
+									"top": 1154.25,
+									"width": 244.13720703125,
+									"height": 20.5,
+									"text": "等待期间是否有新选票",
+									"wordWrap": true
+								}
+							],
+							"font": "Arial;13;0",
+							"top": 1144,
+							"width": 488.2744140625,
+							"height": 41,
+							"nameLabel": {
+								"$ref": "AAAAAAF/rG3moHPDToA="
+							}
+						},
+						{
+							"_type": "FCFlowView",
+							"_id": "AAAAAAF/rG4z9XPOIuI=",
+							"_parent": {
+								"$ref": "AAAAAAF/rF+aUHHW+f8="
+							},
+							"model": {
+								"$ref": "AAAAAAF/rG4z9HPMgDw="
+							},
+							"subViews": [
+								{
+									"_type": "EdgeLabelView",
+									"_id": "AAAAAAF/rG4z9XPPCjA=",
+									"_parent": {
+										"$ref": "AAAAAAF/rG4z9XPOIuI="
+									},
+									"model": {
+										"$ref": "AAAAAAF/rG4z9HPMgDw="
+									},
+									"visible": false,
+									"font": "Arial;13;0",
+									"left": 262,
+									"top": 1113,
+									"height": 13,
+									"alpha": 1.5707963267948966,
+									"distance": 15,
+									"hostEdge": {
+										"$ref": "AAAAAAF/rG4z9XPOIuI="
+									},
+									"edgePosition": 1
+								}
+							],
+							"font": "Arial;13;0",
+							"head": {
+								"$ref": "AAAAAAF/rG3moHPCB9I="
+							},
+							"tail": {
+								"$ref": "AAAAAAF/rGtUznNuHRM="
+							},
+							"lineStyle": 2,
+							"points": "248:1096;248:1144",
+							"nameLabel": {
+								"$ref": "AAAAAAF/rG4z9XPPCjA="
+							}
+						},
+						{
+							"_type": "FCProcessView",
+							"_id": "AAAAAAF/rG5Ab3PXVUU=",
+							"_parent": {
+								"$ref": "AAAAAAF/rF+aUHHW+f8="
+							},
+							"model": {
+								"$ref": "AAAAAAF/rG5Ab3PV5N0="
+							},
+							"subViews": [
+								{
+									"_type": "LabelView",
+									"_id": "AAAAAAF/rG5Ab3PYWn4=",
+									"_parent": {
+										"$ref": "AAAAAAF/rG5Ab3PXVUU="
+									},
+									"font": "Arial;13;0",
+									"left": 194,
+									"top": 1234,
+									"width": 78,
+									"height": 13,
+									"text": "确定最终状态",
+									"wordWrap": true
+								}
+							],
+							"font": "Arial;13;0",
+							"left": 184,
+							"top": 1224,
+							"width": 98,
+							"height": 33,
+							"nameLabel": {
+								"$ref": "AAAAAAF/rG5Ab3PYWn4="
+							}
+						},
+						{
+							"_type": "FCFlowView",
+							"_id": "AAAAAAF/rG6SO3Pj03w=",
+							"_parent": {
+								"$ref": "AAAAAAF/rF+aUHHW+f8="
+							},
+							"model": {
+								"$ref": "AAAAAAF/rG6SO3Ph08E="
+							},
+							"subViews": [
+								{
+									"_type": "EdgeLabelView",
+									"_id": "AAAAAAF/rG6SO3Pk+Aw=",
+									"_parent": {
+										"$ref": "AAAAAAF/rG6SO3Pj03w="
+									},
+									"model": {
+										"$ref": "AAAAAAF/rG6SO3Ph08E="
+									},
+									"font": "Arial;13;0",
+									"left": 256,
+									"top": 1197,
+									"width": 13,
+									"height": 13,
+									"alpha": 1.5707963267948966,
+									"distance": 15,
+									"hostEdge": {
+										"$ref": "AAAAAAF/rG6SO3Pj03w="
+									},
+									"edgePosition": 1,
+									"text": "否"
+								}
+							],
+							"font": "Arial;13;0",
+							"head": {
+								"$ref": "AAAAAAF/rG5Ab3PXVUU="
+							},
+							"tail": {
+								"$ref": "AAAAAAF/rG3moHPCB9I="
+							},
+							"lineStyle": 2,
+							"points": "248:1184;248:1224",
+							"nameLabel": {
+								"$ref": "AAAAAAF/rG6SO3Pk+Aw="
+							}
+						},
+						{
+							"_type": "FCTerminatorView",
+							"_id": "AAAAAAF/rG6uunPtl0k=",
+							"_parent": {
+								"$ref": "AAAAAAF/rF+aUHHW+f8="
+							},
+							"model": {
+								"$ref": "AAAAAAF/rG6uuXPrfL0="
+							},
+							"subViews": [
+								{
+									"_type": "LabelView",
+									"_id": "AAAAAAF/rG6uunPuCjc=",
+									"_parent": {
+										"$ref": "AAAAAAF/rG6uunPtl0k="
+									},
+									"font": "Arial;13;0",
+									"left": 210,
+									"top": 1330,
+									"width": 68.63720703125,
+									"height": 13,
+									"text": "结束选举",
+									"wordWrap": true
+								}
+							],
+							"font": "Arial;13;0",
+							"left": 200,
+							"top": 1320,
+							"width": 88.63720703125,
+							"height": 33,
+							"nameLabel": {
+								"$ref": "AAAAAAF/rG6uunPuCjc="
+							}
+						},
+						{
+							"_type": "FCFlowView",
+							"_id": "AAAAAAF/rG7Ae3P2DAU=",
+							"_parent": {
+								"$ref": "AAAAAAF/rF+aUHHW+f8="
+							},
+							"model": {
+								"$ref": "AAAAAAF/rG7Ae3P0URE="
+							},
+							"subViews": [
+								{
+									"_type": "EdgeLabelView",
+									"_id": "AAAAAAF/rG7Ae3P33m8=",
+									"_parent": {
+										"$ref": "AAAAAAF/rG7Ae3P2DAU="
+									},
+									"model": {
+										"$ref": "AAAAAAF/rG7Ae3P0URE="
+									},
+									"visible": false,
+									"font": "Arial;13;0",
+									"left": 257,
+									"top": 1281,
+									"height": 13,
+									"alpha": 1.5707963267948966,
+									"distance": 15,
+									"hostEdge": {
+										"$ref": "AAAAAAF/rG7Ae3P2DAU="
+									},
+									"edgePosition": 1
+								}
+							],
+							"font": "Arial;13;0",
+							"head": {
+								"$ref": "AAAAAAF/rG6uunPtl0k="
+							},
+							"tail": {
+								"$ref": "AAAAAAF/rG5Ab3PXVUU="
+							},
+							"lineStyle": 2,
+							"points": "243:1256;243:1320",
+							"nameLabel": {
+								"$ref": "AAAAAAF/rG7Ae3P33m8="
+							}
+						},
+						{
+							"_type": "FCProcessView",
+							"_id": "AAAAAAF/rHMKKnQbL3U=",
+							"_parent": {
+								"$ref": "AAAAAAF/rF+aUHHW+f8="
+							},
+							"model": {
+								"$ref": "AAAAAAF/rHMKKXQZTj0="
+							},
+							"subViews": [
+								{
+									"_type": "LabelView",
+									"_id": "AAAAAAF/rHMKKnQcSuM=",
+									"_parent": {
+										"$ref": "AAAAAAF/rHMKKnQbL3U="
+									},
+									"font": "Arial;13;0",
+									"left": 490,
+									"top": 1226,
+									"width": 117,
+									"height": 13,
+									"text": "推迟最终状态的确定",
+									"wordWrap": true
+								}
+							],
+							"font": "Arial;13;0",
+							"left": 480,
+							"top": 1216,
+							"width": 137,
+							"height": 33,
+							"nameLabel": {
+								"$ref": "AAAAAAF/rHMKKnQcSuM="
+							}
+						},
+						{
+							"_type": "FCFlowView",
+							"_id": "AAAAAAF/rHNbSXQm5dQ=",
+							"_parent": {
+								"$ref": "AAAAAAF/rF+aUHHW+f8="
+							},
+							"model": {
+								"$ref": "AAAAAAF/rHNbSXQkw1I="
+							},
+							"subViews": [
+								{
+									"_type": "EdgeLabelView",
+									"_id": "AAAAAAF/rHNbSXQnSL8=",
+									"_parent": {
+										"$ref": "AAAAAAF/rHNbSXQm5dQ="
+									},
+									"model": {
+										"$ref": "AAAAAAF/rHNbSXQkw1I="
+									},
+									"font": "Arial;13;0",
+									"left": 556,
+									"top": 1161,
+									"width": 13,
+									"height": 13,
+									"alpha": 1.5707963267948966,
+									"distance": 15,
+									"hostEdge": {
+										"$ref": "AAAAAAF/rHNbSXQm5dQ="
+									},
+									"edgePosition": 1,
+									"text": "是"
+								}
+							],
+							"font": "Arial;13;0",
+							"head": {
+								"$ref": "AAAAAAF/rHMKKnQbL3U="
+							},
+							"tail": {
+								"$ref": "AAAAAAF/rG3moHPCB9I="
+							},
+							"lineStyle": 2,
+							"points": "487:1168;548:1168;548:1216",
+							"nameLabel": {
+								"$ref": "AAAAAAF/rHNbSXQnSL8="
+							}
+						},
+						{
+							"_type": "FCDecisionView",
+							"_id": "AAAAAAF/rzvVTeFdwos=",
+							"_parent": {
+								"$ref": "AAAAAAF/rF+aUHHW+f8="
+							},
+							"model": {
+								"$ref": "AAAAAAF/rzvVTOFbqM4="
+							},
+							"subViews": [
+								{
+									"_type": "LabelView",
+									"_id": "AAAAAAF/rzvVTeFeer4=",
+									"_parent": {
+										"$ref": "AAAAAAF/rzvVTeFdwos="
+									},
+									"font": "Arial;13;0",
+									"left": 228.542236328125,
+									"top": 503.5,
+									"width": 57.08447265625,
+									"height": 15,
+									"text": "选票状态",
+									"wordWrap": true
+								}
+							],
+							"font": "Arial;13;0",
+							"left": 200,
+							"top": 496,
+							"width": 114.1689453125,
+							"height": 30,
+							"nameLabel": {
+								"$ref": "AAAAAAF/rzvVTeFeer4="
+							}
+						},
+						{
+							"_type": "FCFlowView",
+							"_id": "AAAAAAF/rzxWMeFuWt0=",
+							"_parent": {
+								"$ref": "AAAAAAF/rF+aUHHW+f8="
+							},
+							"model": {
+								"$ref": "AAAAAAF/rzxWMeFsWms="
+							},
+							"subViews": [
+								{
+									"_type": "EdgeLabelView",
+									"_id": "AAAAAAF/rzxWMeFv2Ho=",
+									"_parent": {
+										"$ref": "AAAAAAF/rzxWMeFuWt0="
+									},
+									"model": {
+										"$ref": "AAAAAAF/rzxWMeFsWms="
+									},
+									"visible": false,
+									"font": "Arial;13;0",
+									"left": 276,
+									"top": 465,
+									"height": 13,
+									"alpha": 1.5707963267948966,
+									"distance": 15,
+									"hostEdge": {
+										"$ref": "AAAAAAF/rzxWMeFuWt0="
+									},
+									"edgePosition": 1
+								}
+							],
+							"font": "Arial;13;0",
+							"head": {
+								"$ref": "AAAAAAF/rzvVTeFdwos="
+							},
+							"tail": {
+								"$ref": "AAAAAAF/rGL+HHI7QKg="
+							},
+							"lineStyle": 2,
+							"points": "262:448;262:496",
+							"nameLabel": {
+								"$ref": "AAAAAAF/rzxWMeFv2Ho="
+							}
+						},
+						{
+							"_type": "FCFlowView",
+							"_id": "AAAAAAF/rzxmCeF3X9E=",
+							"_parent": {
+								"$ref": "AAAAAAF/rF+aUHHW+f8="
+							},
+							"model": {
+								"$ref": "AAAAAAF/rzxmCOF1FOg="
+							},
+							"subViews": [
+								{
+									"_type": "EdgeLabelView",
+									"_id": "AAAAAAF/rzxmCeF4+e8=",
+									"_parent": {
+										"$ref": "AAAAAAF/rzxmCeF3X9E="
+									},
+									"model": {
+										"$ref": "AAAAAAF/rzxmCOF1FOg="
+									},
+									"font": "Arial;13;0",
+									"left": 242,
+									"top": 551,
+									"width": 59.236328125,
+									"height": 13,
+									"alpha": 1.5707963267948966,
+									"distance": 15,
+									"hostEdge": {
+										"$ref": "AAAAAAF/rzxmCeF3X9E="
+									},
+									"edgePosition": 1,
+									"text": "LOOKING"
+								}
+							],
+							"font": "Arial;13;0",
+							"head": {
+								"$ref": "AAAAAAF/rGU9oHKH83U="
+							},
+							"tail": {
+								"$ref": "AAAAAAF/rzvVTeFdwos="
+							},
+							"lineStyle": 2,
+							"points": "257:525;257:592",
+							"nameLabel": {
+								"$ref": "AAAAAAF/rzxmCeF4+e8="
+							}
+						},
+						{
+							"_type": "FCProcessView",
+							"_id": "AAAAAAF/r018ZOGjJEM=",
+							"_parent": {
+								"$ref": "AAAAAAF/rF+aUHHW+f8="
+							},
+							"model": {
+								"$ref": "AAAAAAF/r018ZOGhvp4="
+							},
+							"subViews": [
+								{
+									"_type": "LabelView",
+									"_id": "AAAAAAF/r018ZeGkQWo=",
+									"_parent": {
+										"$ref": "AAAAAAF/r018ZOGjJEM="
+									},
+									"font": "Arial;13;0",
+									"left": 506,
+									"top": 514,
+									"width": 130,
+									"height": 13,
+									"text": "统计，并更改自身状态",
+									"wordWrap": true
+								}
+							],
+							"font": "Arial;13;0",
+							"left": 496,
+							"top": 504,
+							"width": 150,
+							"height": 33,
+							"nameLabel": {
+								"$ref": "AAAAAAF/r018ZeGkQWo="
+							}
+						},
+						{
+							"_type": "FCFlowView",
+							"_id": "AAAAAAF/r03qLuGt8ME=",
+							"_parent": {
+								"$ref": "AAAAAAF/rF+aUHHW+f8="
+							},
+							"model": {
+								"$ref": "AAAAAAF/r03qLuGrgB8="
+							},
+							"subViews": [
+								{
+									"_type": "EdgeLabelView",
+									"_id": "AAAAAAF/r03qLuGu32Y=",
+									"_parent": {
+										"$ref": "AAAAAAF/r03qLuGt8ME="
+									},
+									"model": {
+										"$ref": "AAAAAAF/r03qLuGrgB8="
+									},
+									"font": "Arial;13;0",
+									"left": 335,
+									"top": 496,
+									"width": 138.68994140625,
+									"height": 13,
+									"alpha": 1.5707963267948966,
+									"distance": 15,
+									"hostEdge": {
+										"$ref": "AAAAAAF/r03qLuGt8ME="
+									},
+									"edgePosition": 1,
+									"text": "FOLLOWING\\LEADING"
+								}
+							],
+							"font": "Arial;13;0",
+							"head": {
+								"$ref": "AAAAAAF/r018ZOGjJEM="
+							},
+							"tail": {
+								"$ref": "AAAAAAF/rzvVTeFdwos="
+							},
+							"lineStyle": 2,
+							"points": "313:517;496:517",
+							"nameLabel": {
+								"$ref": "AAAAAAF/r03qLuGu32Y="
+							}
+						},
+						{
+							"_type": "UMLNoteView",
+							"_id": "AAAAAAF/r05YpeG6Wy0=",
+							"_parent": {
+								"$ref": "AAAAAAF/rF+aUHHW+f8="
+							},
+							"font": "Arial;13;0",
+							"left": 520,
+							"top": 408,
+							"width": 358,
+							"height": 50,
+							"text": "服务器重启后，发起选举，被其他节点回复后修正自身状态\n（加入Prevote后，应该不存在此类情况）"
+						},
+						{
+							"_type": "UMLNoteLinkView",
+							"_id": "AAAAAAF/r05YyuG9ELU=",
+							"_parent": {
+								"$ref": "AAAAAAF/rF+aUHHW+f8="
+							},
+							"font": "Arial;13;0",
+							"head": {
+								"$ref": "AAAAAAF/r05YpeG6Wy0="
+							},
+							"tail": {
+								"$ref": "AAAAAAF/r03qLuGt8ME="
+							},
+							"lineStyle": 1,
+							"points": "404:517;608:458"
+						}
+					]
+				},
+				{
+					"_type": "FCProcess",
+					"_id": "AAAAAAF/rF/BdnHaBBI=",
+					"_parent": {
+						"$ref": "AAAAAAF/rF+aUHHVCH4="
+					},
+					"name": "开始选举",
+					"ownedElements": [
+						{
+							"_type": "FCFlow",
+							"_id": "AAAAAAF/rGIBAnIKfXI=",
+							"_parent": {
+								"$ref": "AAAAAAF/rF/BdnHaBBI="
+							},
+							"source": {
+								"$ref": "AAAAAAF/rF/BdnHaBBI="
+							},
+							"target": {
+								"$ref": "AAAAAAF/rF/m03HjOwU="
+							}
+						}
+					]
+				},
+				{
+					"_type": "FCProcess",
+					"_id": "AAAAAAF/rF/m03HjOwU=",
+					"_parent": {
+						"$ref": "AAAAAAF/rF+aUHHVCH4="
+					},
+					"name": "自增逻辑时钟",
+					"ownedElements": [
+						{
+							"_type": "FCFlow",
+							"_id": "AAAAAAF/rGIKGnITB2E=",
+							"_parent": {
+								"$ref": "AAAAAAF/rF/m03HjOwU="
+							},
+							"source": {
+								"$ref": "AAAAAAF/rF/m03HjOwU="
+							},
+							"target": {
+								"$ref": "AAAAAAF/rGGR8nH7kRk="
+							}
+						}
+					]
+				},
+				{
+					"_type": "FCProcess",
+					"_id": "AAAAAAF/rGGR8nH7kRk=",
+					"_parent": {
+						"$ref": "AAAAAAF/rF+aUHHVCH4="
+					},
+					"name": "发出选票",
+					"ownedElements": [
+						{
+							"_type": "FCFlow",
+							"_id": "AAAAAAF/rGLPEnIuAbg=",
+							"_parent": {
+								"$ref": "AAAAAAF/rGGR8nH7kRk="
+							},
+							"source": {
+								"$ref": "AAAAAAF/rGGR8nH7kRk="
+							},
+							"target": {
+								"$ref": "AAAAAAF/rGKYl3Ik2jU="
+							}
+						}
+					]
+				},
+				{
+					"_type": "FCDecision",
+					"_id": "AAAAAAF/rGKYl3Ik2jU=",
+					"_parent": {
+						"$ref": "AAAAAAF/rF+aUHHVCH4="
+					},
+					"name": "LOOKING状态",
+					"ownedElements": [
+						{
+							"_type": "FCFlow",
+							"_id": "AAAAAAF/rGMqP3JQGe8=",
+							"_parent": {
+								"$ref": "AAAAAAF/rGKYl3Ik2jU="
+							},
+							"name": "是",
+							"source": {
+								"$ref": "AAAAAAF/rGKYl3Ik2jU="
+							},
+							"target": {
+								"$ref": "AAAAAAF/rGL+HHI5S2Q="
+							}
+						},
+						{
+							"_type": "FCFlow",
+							"_id": "AAAAAAF/rGRXqHJ065Q=",
+							"_parent": {
+								"$ref": "AAAAAAF/rGKYl3Ik2jU="
+							},
+							"name": "否",
+							"source": {
+								"$ref": "AAAAAAF/rGKYl3Ik2jU="
+							},
+							"target": {
+								"$ref": "AAAAAAF/rGQnFXJcRNQ="
+							}
+						}
+					]
+				},
+				{
+					"_type": "FCProcess",
+					"_id": "AAAAAAF/rGL+HHI5S2Q=",
+					"_parent": {
+						"$ref": "AAAAAAF/rF+aUHHVCH4="
+					},
+					"name": "接收外部选票",
+					"ownedElements": [
+						{
+							"_type": "FCFlow",
+							"_id": "AAAAAAF/rzxWMeFsWms=",
+							"_parent": {
+								"$ref": "AAAAAAF/rGL+HHI5S2Q="
+							},
+							"source": {
+								"$ref": "AAAAAAF/rGL+HHI5S2Q="
+							},
+							"target": {
+								"$ref": "AAAAAAF/rzvVTOFbqM4="
+							}
+						}
+					]
+				},
+				{
+					"_type": "FCTerminator",
+					"_id": "AAAAAAF/rGQnFXJcRNQ=",
+					"_parent": {
+						"$ref": "AAAAAAF/rF+aUHHVCH4="
+					},
+					"name": "结束选举"
+				},
+				{
+					"_type": "FCDecision",
+					"_id": "AAAAAAF/rGU9oHKFjT0=",
+					"_parent": {
+						"$ref": "AAAAAAF/rF+aUHHVCH4="
+					},
+					"name": "选举轮次比较",
+					"ownedElements": [
+						{
+							"_type": "FCFlow",
+							"_id": "AAAAAAF/rGWmynKiCLo=",
+							"_parent": {
+								"$ref": "AAAAAAF/rGU9oHKFjT0="
+							},
+							"name": "相等",
+							"source": {
+								"$ref": "AAAAAAF/rGU9oHKFjT0="
+							},
+							"target": {
+								"$ref": "AAAAAAF/rGWUCnKZRMU="
+							}
+						},
+						{
+							"_type": "FCFlow",
+							"_id": "AAAAAAF/rGXKE3K0Y5c=",
+							"_parent": {
+								"$ref": "AAAAAAF/rGU9oHKFjT0="
+							},
+							"name": "小于",
+							"source": {
+								"$ref": "AAAAAAF/rGU9oHKFjT0="
+							},
+							"target": {
+								"$ref": "AAAAAAF/rGXA63Ksetk="
+							}
+						},
+						{
+							"_type": "FCFlow",
+							"_id": "AAAAAAF/rGYlDnLU8G0=",
+							"_parent": {
+								"$ref": "AAAAAAF/rGU9oHKFjT0="
+							},
+							"name": "大于",
+							"source": {
+								"$ref": "AAAAAAF/rGU9oHKFjT0="
+							},
+							"target": {
+								"$ref": "AAAAAAF/rGX3CXK+KyE="
+							}
+						}
+					]
+				},
+				{
+					"_type": "FCProcess",
+					"_id": "AAAAAAF/rGWUCnKZRMU=",
+					"_parent": {
+						"$ref": "AAAAAAF/rF+aUHHVCH4="
+					},
+					"name": "比较选票",
+					"ownedElements": [
+						{
+							"_type": "FCFlow",
+							"_id": "AAAAAAF/rGmwrHMnnOU=",
+							"_parent": {
+								"$ref": "AAAAAAF/rGWUCnKZRMU="
+							},
+							"source": {
+								"$ref": "AAAAAAF/rGWUCnKZRMU="
+							},
+							"target": {
+								"$ref": "AAAAAAF/rGg9HXLxGFs="
+							}
+						}
+					]
+				},
+				{
+					"_type": "FCProcess",
+					"_id": "AAAAAAF/rGXA63Ksetk=",
+					"_parent": {
+						"$ref": "AAAAAAF/rF+aUHHVCH4="
+					},
+					"name": "无视"
+				},
+				{
+					"_type": "FCProcess",
+					"_id": "AAAAAAF/rGX3CXK+KyE=",
+					"_parent": {
+						"$ref": "AAAAAAF/rF+aUHHVCH4="
+					},
+					"name": "以外部选票的轮次为准",
+					"ownedElements": [
+						{
+							"_type": "FCFlow",
+							"_id": "AAAAAAF/rGhf5HL5/qU=",
+							"_parent": {
+								"$ref": "AAAAAAF/rGX3CXK+KyE="
+							},
+							"source": {
+								"$ref": "AAAAAAF/rGX3CXK+KyE="
+							},
+							"target": {
+								"$ref": "AAAAAAF/rGWUCnKZRMU="
+							}
+						}
+					]
+				},
+				{
+					"_type": "FCDecision",
+					"_id": "AAAAAAF/rGg9HXLxGFs=",
+					"_parent": {
+						"$ref": "AAAAAAF/rF+aUHHVCH4="
+					},
+					"name": "是否更新选票",
+					"ownedElements": [
+						{
+							"_type": "FCFlow",
+							"_id": "AAAAAAF/rGmMg3MTgbw=",
+							"_parent": {
+								"$ref": "AAAAAAF/rGg9HXLxGFs="
+							},
+							"name": "是",
+							"source": {
+								"$ref": "AAAAAAF/rGg9HXLxGFs="
+							},
+							"target": {
+								"$ref": "AAAAAAF/rGi5N3MEhaU="
+							}
+						},
+						{
+							"_type": "FCFlow",
+							"_id": "AAAAAAF/rGod13NGn6s=",
+							"_parent": {
+								"$ref": "AAAAAAF/rGg9HXLxGFs="
+							},
+							"name": "否",
+							"source": {
+								"$ref": "AAAAAAF/rGg9HXLxGFs="
+							},
+							"target": {
+								"$ref": "AAAAAAF/rGnPgnMxjxo="
+							}
+						}
+					]
+				},
+				{
+					"_type": "FCProcess",
+					"_id": "AAAAAAF/rGi5N3MEhaU=",
+					"_parent": {
+						"$ref": "AAAAAAF/rF+aUHHVCH4="
+					},
+					"name": "广播新的选票",
+					"ownedElements": [
+						{
+							"_type": "FCFlow",
+							"_id": "AAAAAAF/rGnxC3M7vnQ=",
+							"_parent": {
+								"$ref": "AAAAAAF/rGi5N3MEhaU="
+							},
+							"source": {
+								"$ref": "AAAAAAF/rGi5N3MEhaU="
+							},
+							"target": {
+								"$ref": "AAAAAAF/rGnPgnMxjxo="
+							}
+						}
+					]
+				},
+				{
+					"_type": "FCProcess",
+					"_id": "AAAAAAF/rGnPgnMxjxo=",
+					"_parent": {
+						"$ref": "AAAAAAF/rF+aUHHVCH4="
+					},
+					"name": "更新票箱",
+					"ownedElements": [
+						{
+							"_type": "FCFlow",
+							"_id": "AAAAAAF/rGtIZHNjtyo=",
+							"_parent": {
+								"$ref": "AAAAAAF/rGnPgnMxjxo="
+							},
+							"source": {
+								"$ref": "AAAAAAF/rGnPgnMxjxo="
+							},
+							"target": {
+								"$ref": "AAAAAAF/rGqJyHNTN50="
+							}
+						}
+					]
+				},
+				{
+					"_type": "FCDecision",
+					"_id": "AAAAAAF/rGqJyHNTN50=",
+					"_parent": {
+						"$ref": "AAAAAAF/rF+aUHHVCH4="
+					},
+					"name": "是否有节点获得大多数选票",
+					"ownedElements": [
+						{
+							"_type": "FCFlow",
+							"_id": "AAAAAAF/rGtmDnN0FQE=",
+							"_parent": {
+								"$ref": "AAAAAAF/rGqJyHNTN50="
+							},
+							"name": "是",
+							"source": {
+								"$ref": "AAAAAAF/rGqJyHNTN50="
+							},
+							"target": {
+								"$ref": "AAAAAAF/rGtUznNsSL0="
+							}
+						},
+						{
+							"_type": "FCFlow",
+							"_id": "AAAAAAF/rGyJt3OQZbQ=",
+							"_parent": {
+								"$ref": "AAAAAAF/rGqJyHNTN50="
+							},
+							"name": "否",
+							"source": {
+								"$ref": "AAAAAAF/rGqJyHNTN50="
+							},
+							"target": {
+								"$ref": "AAAAAAF/rGKYl3Ik2jU="
+							}
+						}
+					]
+				},
+				{
+					"_type": "FCProcess",
+					"_id": "AAAAAAF/rGtUznNsSL0=",
+					"_parent": {
+						"$ref": "AAAAAAF/rF+aUHHVCH4="
+					},
+					"name": "等待finalTimeout",
+					"ownedElements": [
+						{
+							"_type": "FCFlow",
+							"_id": "AAAAAAF/rG4z9HPMgDw=",
+							"_parent": {
+								"$ref": "AAAAAAF/rGtUznNsSL0="
+							},
+							"source": {
+								"$ref": "AAAAAAF/rGtUznNsSL0="
+							},
+							"target": {
+								"$ref": "AAAAAAF/rG3moHPASY0="
+							}
+						}
+					]
+				},
+				{
+					"_type": "FCDecision",
+					"_id": "AAAAAAF/rG3moHPASY0=",
+					"_parent": {
+						"$ref": "AAAAAAF/rF+aUHHVCH4="
+					},
+					"name": "等待期间是否有新选票",
+					"ownedElements": [
+						{
+							"_type": "FCFlow",
+							"_id": "AAAAAAF/rG6SO3Ph08E=",
+							"_parent": {
+								"$ref": "AAAAAAF/rG3moHPASY0="
+							},
+							"name": "否",
+							"source": {
+								"$ref": "AAAAAAF/rG3moHPASY0="
+							},
+							"target": {
+								"$ref": "AAAAAAF/rG5Ab3PV5N0="
+							}
+						},
+						{
+							"_type": "FCFlow",
+							"_id": "AAAAAAF/rHNbSXQkw1I=",
+							"_parent": {
+								"$ref": "AAAAAAF/rG3moHPASY0="
+							},
+							"name": "是",
+							"source": {
+								"$ref": "AAAAAAF/rG3moHPASY0="
+							},
+							"target": {
+								"$ref": "AAAAAAF/rHMKKXQZTj0="
+							}
+						}
+					]
+				},
+				{
+					"_type": "FCProcess",
+					"_id": "AAAAAAF/rG5Ab3PV5N0=",
+					"_parent": {
+						"$ref": "AAAAAAF/rF+aUHHVCH4="
+					},
+					"name": "确定最终状态",
+					"ownedElements": [
+						{
+							"_type": "FCFlow",
+							"_id": "AAAAAAF/rG7Ae3P0URE=",
+							"_parent": {
+								"$ref": "AAAAAAF/rG5Ab3PV5N0="
+							},
+							"source": {
+								"$ref": "AAAAAAF/rG5Ab3PV5N0="
+							},
+							"target": {
+								"$ref": "AAAAAAF/rG6uuXPrfL0="
+							}
+						}
+					]
+				},
+				{
+					"_type": "FCTerminator",
+					"_id": "AAAAAAF/rG6uuXPrfL0=",
+					"_parent": {
+						"$ref": "AAAAAAF/rF+aUHHVCH4="
+					},
+					"name": "结束选举"
+				},
+				{
+					"_type": "FCProcess",
+					"_id": "AAAAAAF/rHMKKXQZTj0=",
+					"_parent": {
+						"$ref": "AAAAAAF/rF+aUHHVCH4="
+					},
+					"name": "推迟最终状态的确定"
+				},
+				{
+					"_type": "FCDecision",
+					"_id": "AAAAAAF/rzvVTOFbqM4=",
+					"_parent": {
+						"$ref": "AAAAAAF/rF+aUHHVCH4="
+					},
+					"name": "选票状态",
+					"ownedElements": [
+						{
+							"_type": "FCFlow",
+							"_id": "AAAAAAF/rzxmCOF1FOg=",
+							"_parent": {
+								"$ref": "AAAAAAF/rzvVTOFbqM4="
+							},
+							"name": "LOOKING",
+							"source": {
+								"$ref": "AAAAAAF/rzvVTOFbqM4="
+							},
+							"target": {
+								"$ref": "AAAAAAF/rGU9oHKFjT0="
+							}
+						},
+						{
+							"_type": "FCFlow",
+							"_id": "AAAAAAF/r03qLuGrgB8=",
+							"_parent": {
+								"$ref": "AAAAAAF/rzvVTOFbqM4="
+							},
+							"name": "FOLLOWING\\LEADING",
+							"source": {
+								"$ref": "AAAAAAF/rzvVTOFbqM4="
+							},
+							"target": {
+								"$ref": "AAAAAAF/r018ZOGhvp4="
+							}
+						}
+					]
+				},
+				{
+					"_type": "FCProcess",
+					"_id": "AAAAAAF/r018ZOGhvp4=",
+					"_parent": {
+						"$ref": "AAAAAAF/rF+aUHHVCH4="
+					},
+					"name": "统计，并更改自身状态"
+				}
+			]
+		}
+	]
+}
