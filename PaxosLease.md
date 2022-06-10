@@ -274,6 +274,14 @@ proposer会在`OnProposeResponse`中处理此回复消息，同样需要累计�
 
 
 
+利用paxoslease选举时，新的leader申请方提出的提案，只有在acceptor的上一租期已经过期时，才能生效，这就导致时效性上略差；因为新提案的提出是由learner负责，而learner的过期时间是必然小于acceptor的过期时间，这就导致最早提出的提案，在进入2a之后被丢弃，直到半数以上acceptor的租期也过期
+
+
+
+
+
+
+
 
 
 

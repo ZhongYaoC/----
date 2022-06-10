@@ -19,13 +19,13 @@ stdio¿âº¯ÊýÎª¼õÉÙÊ¹ÓÃÏµÍ³µ÷ÓÃ£¬ËùÒÔ»áÊ¹ÓÃÄÚ²¿µÄ»º³åÇøstdio»º³åÇø£»Èçfgetsº¯Êý¾Í»
 ### Mutex Ëø
 #### Ëø·ÖÀà
 1. ×ÔÐýËø spinlock
-ÂÖÑ¯£¬ÎÞÏÞµÈ´ý£»Ö»Òªµ±Ç°×ÊÔ´±»ÆäËûÏß³ÌÕ¼ÓÃ£¬±¾Ïß³Ì¾Í²»¶ÏÑ¯ÎÊÊÇ·ñ¿ÉÕ¼ÓÃ
-¹ý¶ÈµÈ´ý»áÀË·ÑCPU×ÊÔ´
-ÊÊÓÃÓÚ£ºÉÏËøµÄÒµÎñ´úÂëÔËÐÐºÜ¿ìµÄ³¡¾°£¬¿É±ÜÃâ»¥³âËøÏÂµÄÏß³ÌÇÐ»»
+  ÂÖÑ¯£¬ÎÞÏÞµÈ´ý£»Ö»Òªµ±Ç°×ÊÔ´±»ÆäËûÏß³ÌÕ¼ÓÃ£¬±¾Ïß³Ì¾Í²»¶ÏÑ¯ÎÊÊÇ·ñ¿ÉÕ¼ÓÃ
+  ¹ý¶ÈµÈ´ý»áÀË·ÑCPU×ÊÔ´
+  ÊÊÓÃÓÚ£ºÉÏËøµÄÒµÎñ´úÂëÔËÐÐºÜ¿ìµÄ³¡¾°£¬¿É±ÜÃâ»¥³âËøÏÂµÄÏß³ÌÇÐ»»
 
 2. »¥³âÆ÷/Ëø mutex £¨mutual exclusive£©
-²»ÔÙÂÖÑ¯¡¢ÎÞÏÞµÈ´ý£»ÓÃÒ»¸ö»¥³âÆ÷È¥¹ÜÀíËùÓÐËø£¬µ±Ç°×ÊÔ´Õ¼ÓÃ±»ÊÍ·Åºó£¬Í¨ÖªÏß³Ì£¬·ñÔòÏß³ÌË¯Ãß
-ÎªÁË¹ÜÀíËùÓÐËø£¬ÐèÒªOS²ãÃæµ÷¶È£¬¹Ê»¥³âÆ÷·½Ê½¸ü¼ÓºÄ×ÊÔ´£¬Éæ¼°ÉÏÏÂÎÄÇÐ»»
+  ²»ÔÙÂÖÑ¯¡¢ÎÞÏÞµÈ´ý£»ÓÃÒ»¸ö»¥³âÆ÷È¥¹ÜÀíËùÓÐËø£¬µ±Ç°×ÊÔ´Õ¼ÓÃ±»ÊÍ·Åºó£¬Í¨ÖªÏß³Ì£¬·ñÔòÏß³ÌË¯Ãß
+  ÎªÁË¹ÜÀíËùÓÐËø£¬ÐèÒªOS²ãÃæµ÷¶È£¬¹Ê»¥³âÆ÷·½Ê½¸ü¼ÓºÄ×ÊÔ´£¬Éæ¼°ÉÏÏÂÎÄÇÐ»»
 
 ³£¼ûÓÃ·¨£º
 ¶¨ÒåÒ»¸öÏß³Ì¼ä¹²ÏíµÄ»¥³âÁ¿mutex£»¸÷Ïß³ÌÈ¥¾ºÕùmutex£¬Ë­ÇÀµ½Ë­Ê¹ÓÃ×ÊÔ´
@@ -34,16 +34,16 @@ stdio¿âº¯ÊýÎª¼õÉÙÊ¹ÓÃÏµÍ³µ÷ÓÃ£¬ËùÒÔ»áÊ¹ÓÃÄÚ²¿µÄ»º³åÇøstdio»º³åÇø£»Èçfgetsº¯Êý¾Í»
 
 
 3. Ìõ¼þ±äÁ¿ condition variable
-·ÀÖ¹ÒµÎñÂß¼­ÖÐ³öÏÖÎÞÏÞµÈ´ý Ìõ¼þ´ï³É(¼´ÔÚÊ¹ÓÃÁË»¥³âÁ¿ºó£¬ÈÔÈ»³öÏÖÁË×ÔÐýËøÖÐµÄÎÞÏÞÑ­»·ÏÖÏó)£¬´Ó¶øÀË·ÑCPU×ÊÔ´£¬¶øÒµÎñÌõ¼þ£¬²Ù×÷ÏµÍ³ÎÞ·¨¹ÜÀí£¬¹ÊÉèÖÃÌõ¼þ±äÁ¿
-ÒµÎñÌõ¼þÎ´´ï³ÉÇ°£¬Ïß³ÌË¯Ãß£¬´ï³ÉÌõ¼þºónotifyÏß³Ì£¬ÔÙÀ´¼ÓËø
+  ·ÀÖ¹ÒµÎñÂß¼­ÖÐ³öÏÖÎÞÏÞµÈ´ý Ìõ¼þ´ï³É(¼´ÔÚÊ¹ÓÃÁË»¥³âÁ¿ºó£¬ÈÔÈ»³öÏÖÁË×ÔÐýËøÖÐµÄÎÞÏÞÑ­»·ÏÖÏó)£¬´Ó¶øÀË·ÑCPU×ÊÔ´£¬¶øÒµÎñÌõ¼þ£¬²Ù×÷ÏµÍ³ÎÞ·¨¹ÜÀí£¬¹ÊÉèÖÃÌõ¼þ±äÁ¿
+  ÒµÎñÌõ¼þÎ´´ï³ÉÇ°£¬Ïß³ÌË¯Ãß£¬´ï³ÉÌõ¼þºónotifyÏß³Ì£¬ÔÙÀ´¼ÓËø
 
 Ìõ¼þ±äÁ¿ÊôÓÚÏß³Ì¼äÍ¨Ñ¶»úÖÆ£¬Óë»¥³âÁ¿Ò»ÆðÊ¹ÓÃ£¡
 
 > Ìõ¼þ±äÁ¿ÒÑ¾­²»ÊÇËøµÄ¸ÅÄîÁË£¬¶øÊÇÔÚ»ñÈ¡µ½×ÊÔ´·ÃÎÊÈ¨ÏÞºó£¬ÓÉÓÚÊµ¼ÊÒµÎñ³¡¾°ÓÖ²»ÄÜ·ÃÎÊµÄÇé¿öÏÂÒªÈçºÎÊµÏÖÖ´ÐÐ¸ßÐ§
 
 4. ¶ÁÐ´Ëø readers-writers lock
-¼´OSÐÅºÅÁ¿ÖÐµÄ¶ÁÐ´ÕßÎÊÌâ£¬Ð´Õß»¥³â£¬¶ÁÕß¼ä²»»¥³â£¨¶Á¹²Ïí£¬Ð´¶ÀÕ¼£©£»
-¿ÉÒÔÓÃspinlock»òÕßmutexÊµÏÖ
+  ¼´OSÐÅºÅÁ¿ÖÐµÄ¶ÁÐ´ÕßÎÊÌâ£¬Ð´Õß»¥³â£¬¶ÁÕß¼ä²»»¥³â£¨¶Á¹²Ïí£¬Ð´¶ÀÕ¼£©£»
+  ¿ÉÒÔÓÃspinlock»òÕßmutexÊµÏÖ
 
 **MR Hu½¨Òé£ºÖ±½ÓÓÃ»¥³âËø£¬²»ÓÃ¶ÁÐ´Ëø£¬ºóÕß¿ÉÄÜ»á°ÑÂß¼­¸ãÂÒ**
 ```C++
@@ -236,7 +236,7 @@ pthread_mutex_lock(&mtx);
 pthread_cond_wait(&cond, &mtx);
 
 //¼ÓËø
-pthread_mutedx_lock(&mtx);
+pthread_mutex_lock(&mtx);
 
 //Ìõ¼þ´¥·¢£¬»½ÐÑ
 pthread_cond_signal(&cond);
@@ -292,11 +292,11 @@ ACCEPTÀàÐÍµÄÌ×½Ó×Ö£¬Ö¸SERVERÀàÐÍÌ×½Ó×ÖacceptºóµÄÒÑÍê³ÉÁ¬½Ó£»
 1¡¢´Ó¶øÐèÒªÒ»´ÎfdlistµÄÈ«Ìå±éÀú£¬ÔÚ¼ÓÈëFD_SETÇ°:
 
     1£©¶Ô´¦ÓÚÁ¬½ÓCONNECTED×´Ì¬µ«ÊÇfdÃ÷ÏÔ·Ç·¨µÄÌ×½Ó×Ö£¬×´Ì¬ÐÞ¸ÄÎªCLOSE
-    
+
     2£©¶ÔÒÑ¹Ø±Õ£¨CLOSED£©µÄCLIENTÌ×½Ó×Ö£¬ÖØÐÂ´´½¨£¬×´Ì¬ÐÞ¸ÄÎªCOMMON
-    
+
     3£©¶Ô´¦ÓÚ³õÊ¼»¯£¨FD_STATUS_COMMON£©×´Ì¬µÄÌ×½Ó×Ö£º
-    
+
         a£©ÆäÖÐÒÑ³¬Ê±µÄCLIENTÌ×½Ó×Ö£¬×öÒ»´ÎÖØÁ¬Connect£¬Õë¶ÔÖØÁ¬½á¹û£¬ÐÞ¸ÄÌ×½Ó×Ö×´Ì¬£º
         	Á¬½ÓÕý³££¬¾Í°Ñ½ø³Ì×´Ì¬·¢¸ø¶Ô¶Ë£¨MOMÏµÍ³£©£»
         	Á¬½Ó·µ»ØEWOULDBLOCK£¬ËµÃ÷·Ç×èÈûÁ¬½ÓÎ´Íê³É£¬µÈ´ý¼ì²âÁ¬½ÓTestConnect()
@@ -319,11 +319,11 @@ ACCEPTÀàÐÍµÄÌ×½Ó×Ö£¬Ö¸SERVERÀàÐÍÌ×½Ó×ÖacceptºóµÄÒÑÍê³ÉÁ¬½Ó£»
 2¡¢Õë¶ÔÆäËû×´Ì¬Ì×½Ó×Ö
 
     1)SERVERÀàÐÍÌ×½Ó×Ö¾Í×öAccept£¬°ÑÐÂµÄÒÑÁ¬½ÓÌ×½Ó×Ö¼ÓÈëfdlistÖÐ£¨Õâ¸öÐÂµÄÒÑÁ¬½ÓÌ×½Ó×ÖÊÇACCEPTÀàÐÍµÄCONNECTED×´Ì¬£©
-    
+
     2)·Ç³õÊ¼»¯COMMON×´Ì¬µÄ·ÇSERVERÀàÐÍÌ×½Ó×Ö£¬½ÓÊÕÊý¾Ý±¨recv£»
     Èç¹ûrecv·µ»Ø´íÎóµÄ£¬¹Ø±ÕÌ×½Ó×Ö£¬ÇÒ×´Ì¬ÐÞ¸ÄÎªCLOSE£¬ÆäÖÐÀàÐÍÎªACCEPTµÄÌ×½Ó×ÖÖ±½ÓÇå³öfdlist£¬µ«CLIENTÀàÐÍµÄÌ×½Ó×Ö²»¹Ü
 
-Èý¡¢×îºó£¬Õë¶Ôselect³¬Ê±£¨select return <=0£©,¶ÔÀïÃæFD_STATUS_TESTCONN×´Ì¬µÄÌ×½Ó×Ö£¨Ò²Ö»ÓÐ´Ë×´Ì¬µÄÌ×½Ó×Öselect³¬Ê±ÐèÒª´¦Àí£©¼ì²éÓÐÃ»ÓÐ³¬¹ýMAX_CONNECT_TIMEÊ±¼ä£¬ÓÐ¾ÍCLOSEµô£¬Ã»ÓÐ¾Í²»ÐèÒª¹Ü£¨µÚÈý´Îfdlist±éÀú£©
+Èý¡¢×îºó£¬Õë¶Ôselect³¬Ê±£¨select return ==0£©,¶ÔÀïÃæFD_STATUS_TESTCONN×´Ì¬µÄÌ×½Ó×Ö£¨Ò²Ö»ÓÐ´Ë×´Ì¬µÄÌ×½Ó×Öselect³¬Ê±ÐèÒª´¦Àí£©¼ì²éÓÐÃ»ÓÐ³¬¹ýMAX_CONNECT_TIMEÊ±¼ä£¬ÓÐ¾ÍCLOSEµô£¬Ã»ÓÐ¾Í²»ÐèÒª¹Ü£¨µÚÈý´Îfdlist±éÀú£©
 
 
 
