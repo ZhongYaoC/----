@@ -186,6 +186,8 @@ template <class T> struct remove_reference<T&&>
 
 1）当.h文件定义变量（似乎是全局变量）时，会出现此错误
 
+.h内部直接定义（全局）函数也会出现此错误
+
 ```C++
 // LNK2005_global.h
 int global_int;  // LNK2005
@@ -369,8 +371,126 @@ map是会直接为该key值使用默认构造函数构造一个对应的value值
 
 左值引用`int&`只接受左值，但是常量左值引用`const int&`可以接受右值，编译器会为这个临时变量分配内存；
 
-> 左值引用使用时，很大可能会修改此值的某些属性值，而如果传入右值或者说临时变量，那么此修改就会作废！！所以编译器直接不允许，而如果是常量左值引用，那么说明不会修改传入的值，只是读取其中数据，所以编译器允许
+> 左值引用使用时，很大可能会修改此值的某些属性值，而如果传入右值或者说临时变量，那么此修改就会在临时变量超出作用范围时作废！！所以编译器直接不允许，而如果是常量左值引用，那么说明不会修改传入的值，只是读取其中数据，所以编译器允许
 >
 > 暂时是这样理解的
 
 右值引用`int&&`只接受右值
+
+
+
+22、std::move是将当前对象转变为右值，而右值是个临时对象，当调用其移动构造时，其资源会全部移动给另一个，本身资源清空，所以可以很方便，不用再对当前对象做clear
+
+```c++
+vector<int> level;
+vector<vector<int>> res;
+//若干操作后，level中值要全部放入res，而level本身要清空装别的
+res.push_back(std::move(level));
+//原本要写为
+res.push_back(level);//此时level是左值，pushback内部会调用拷贝构造
+level.clear();
+
+
+//int等基础类型也一样
+res.push(std::move(m));//m之后会被清空为初始值0；初始值是0吗？此处还待商榷
+```
+
+
+
+23、指针、指针引用
+
+写翻转二叉树题目，没有使用最直接的递归，而是外面套了一层函数，然后内部递归，居然出现了root的左右子节点在的确发生了交换后，又恢复了原状，而在直接原函数递归中没有此问题；参考了下评论中的一些解法，函数参数改用指针引用后解决问题；
+
+```C++
+// void Reverse(TreeNode *node1, TreeNode *node2) Error
+void Reverse(TreeNode *&node1, TreeNode *&node2)
+{
+    if (!node1 && !node2)
+    {
+        return;
+    }
+
+    swap(node1, node2);
+    if (node1)
+    {
+        Reverse(node1->left, node1->right);
+    }
+    
+    if (node2)
+    {
+        Reverse(node2->left, node2->right);
+    }
+}
+
+TreeNode *invertTree(TreeNode *root)
+{
+    if (!root)
+    {
+        return nullptr;
+    }
+    Reverse(root->left, root->right);
+    return root;
+}
+```
+
+原因就在于函数参数的值传递，一般传入指针是为了通过指针去修改指向的变量，而对于函数内使用的指针本身，其实是一个拷贝到的指针副本，你对于指针本身的操作就是在这个局部变量上操作，所以离开Reverse作用域之后，交换的指针就失效了。
+
+swap为什么可以在作用域内对指针完成交换，因为swap是函数模板，其参数是T&，所以传入指针后，其参数变为`TreeNode*&`而不是指针。
+
+指针引用`int* &`代表这个指针的别名，和普通引用没有区别，只不过这个别名是一个指针的，如此之后，对该指针的操作将不再是副本操作！！
+
+
+
+24、static的理解 
+
+static代表静态，在类内定义了static，说明这个变量或者函数是归属于整个类的，不是类对象；
+
+所以类内静态函数中不能调用类内变量，类内变量属于某个类对象，而不会是整个类，所以静态函数不能调用非静态成员！
+
+
+
+25、结构体对齐问题
+
+为提高CPU运行速度等，编译器会对结构体做内存对齐，如
+
+```C++
+typedef struct
+{
+    uint64_t paxos_id;
+    uint64_t node_id;
+    uint32_t len; ////value长度
+    char value[9];
+} TagPaxosLearnValue;
+```
+
+如果按照直接计算内存长度，那么`sizeof(TagPaxosLearnValue) = sizeof(uint64_t) + sizeof(uint64_t) + sizeof(uint32_t) + 9 = 29` ，但是实际直接执行`sizeof(TagPaxosLearnValue)`得到的是32，在原长度基础上增加了3字节，这是因为编译器对此结构体做了8字节对齐，即 8 + 8 + 4 + （4 + 5） + 3；所以使用`sizeof(TagPaxosLearnValue)`需要非常注意对齐问题！
+
+PS：一般对齐和CPU及OS有关，一般和指针大小一样，如`sizeof(int*)`是8，那么就是8字节对齐
+
+
+
+26、手动释放容器或string等的内存
+
+有时，某容器可能在程序生命周期内一直存在，但是其内部的数据可能会清空，然后继续push_back，如此反复，就有可能导致容器的capacity一直会变大，即占用内存会变大，而即使数据清空后，capacity也不会降低，但是又没有析构，导致内存占用，所以需要手动将容器中的值清空。
+
+* 利用swap一个空容器，而空容器本身是临时变量，交换得到内存后可以很快释放。
+
+* C++11中提出了shrink_to_fit函数，可以根据当前数据量，自动调节内存占用，清理不用的capacity，但不是简单的将capacity()降低到size()；
+
+
+由于内存的重新分配，会导致原来的迭代器和引用全部失效！！
+
+以上针对string也同理。
+
+```c++
+vector<string> chosen_values;
+
+void ClearCache()
+{
+  //chosen_values.swap(vector<string>()); C11中似乎不允许，swap传入一个右值，会报错
+  //Or
+  vector<string> tmp_vec;//临时变量，会在函数结束时释放内存
+  chosen_values.swap(tmp_vec);
+}
+```
+
