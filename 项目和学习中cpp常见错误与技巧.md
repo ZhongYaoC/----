@@ -1,4 +1,4 @@
-1、不允许使用不完整的类型
+##### 1、不允许使用不完整的类型
 
 不完整类型：缺乏足够的信息，例如长度去描述一个完整的对象
 
@@ -18,7 +18,7 @@
 
 
 
-2、野指针
+##### 2、空悬指针 & 野指针
 
 针对某堆上资源，如果单纯delete析构对象并释放内存，而其指针不赋值为null的话，该指针即为野指针；因为delete只是将该指针指向的内存空间释放，而该指针仍指向该空间，此时该空间属于未知状态，继续使用该指针可能导致未知错误。
 
@@ -40,27 +40,27 @@ p = NULL;
 
 
 
-3、 static成员的使用
+##### 3、 static成员的使用
 
 
 
-4、慎用memcpy
+##### 4、慎用memcpy
 
 ```memcpy(void* dest, void* sourc, int len);```其中长度是由用户自己把控，就会出现len大于dest的内存长度，而且此时并不会报错！！
 
 
 
-5、网络间传输C++类对象时需要做序列化
+##### 5、网络间传输C++类对象时需要做序列化
 
 因为单纯将对象指针信息放入数据包中传输，对端得到的信息中并不包含该对象的基类、继承关系等！
 
 
 
-6、string类型内似乎不需要管理转义字符这一说？？？
+##### 6、string类型内似乎不需要管理转义字符这一说？？？
 
 
 
-7、char* char[]
+##### 7、char* char[]
 
 char* a = "asdad";//代表指向一个静态存储区的字符串的指针，所以不可以修改
 
@@ -72,7 +72,7 @@ char* arr = new  char(6);//代表申请单字符的内存空间，并用'6'这�
 
 
 
-8、using声明和using指示
+##### 8、using声明和using指示
 
 using声明可以使用，using指示最好不要使用！
 
@@ -80,7 +80,7 @@ using声明可以使用，using指示最好不要使用！
 
 
 
-9、模板全特化和偏特化
+##### 9、模板全特化和偏特化
 
 首先申明，函数模板是不允许偏特化（partial specialization）的，函数模板只允许全特化（template specialization）；类模板是可以做全特化和偏特化的。
 
@@ -166,7 +166,7 @@ template <class T> struct remove_reference<T&&>
 
 
 
-11、name lookup rules （C++中名称查找法则）/ arguement-dependent lookup（实参取决之查找法则）
+##### 11、name lookup rules （C++中名称查找法则）/ arguement-dependent lookup（实参取决之查找法则）
 
 
 
@@ -176,7 +176,7 @@ template <class T> struct remove_reference<T&&>
 
 
 
-12、链接器工具错误 LNK2005
+##### 12、链接器工具错误 LNK2005
 
 [链接器工具错误 LNK2005 | Microsoft Docs](https://docs.microsoft.com/zh-cn/cpp/error-messages/tool-errors/linker-tools-error-lnk2005?view=msvc-170)
 
@@ -224,7 +224,7 @@ __declspec(selectany) int global_int = 17;
 
 
 
-13、lambda
+##### 13、lambda
 
 每个lambda都有它自己唯一的（未命名的）类类型，（是的，lambda是个类类型，而不是简单的函数），而它的捕获列表中的变量，便是这个类的成员变量！！！
 
@@ -239,7 +239,7 @@ auto mod = [](int i, int j){return i % j;}
 
 
 
-14、bind 和 function
+##### 14、bind 和 function
 
 C++中的可调用类型：函数、函数指针、lambda表达式、重载了调用运算符的类、bind创建的对象
 
@@ -297,15 +297,15 @@ function统一了调用形式，bind可以转变可调用对象，那么利用�
 
 以下两个可能会给bind function带来些灵感，两者可能涉及bind、function到底是如何实现的
 
-15、keyspace中的callable回调形式
+##### 15、keyspace中的callable回调形式
 
-16、nmstl中的回调实现
-
-
+##### 16、nmstl中的回调实现
 
 
 
-17、名称遮掩规则 name-hiding rules
+
+
+##### 17、名称遮掩规则 name-hiding rules
 
 只要名称相同即为遮掩，无所谓类型
 
@@ -319,7 +319,7 @@ function统一了调用形式，bind可以转变可调用对象，那么利用�
 
 
 
-18、纯虚函数 pure virtual
+##### 18、纯虚函数 pure virtual
 
 纯虚函数在抽象类中是可以有实现的，但是即使有实现，其**派生类中**仍然需要**强制对此纯虚函数做重新声明**，当然也可以有自己的实现
 
@@ -327,11 +327,27 @@ function统一了调用形式，bind可以转变可调用对象，那么利用�
 
 否则报错为：纯虚拟函数 "Base::func1()" 没有强制替代项
 
+纯虚函数的设计思路即为子类只继承其接口，实现需要子类自己去做。
+
+纯虚函数在抽象类中的实现是无意义的，因为纯虚函数所在的类是不允许实例化的，之所以存在其实现主要发生在一种情况下：你希望拥有一个抽象类，但是没有合适的纯虚函数，而抽象类的设计初衷就是被作为基类，所以析构函数总是被设计为`virtual`（防止对象析构不充分），所以就将此析构函数设计为纯虚析构函数（pure virtual dtor），而为了使用多态特性的类的析构函数必须有实现，否则链接器将会报错，故将此纯虚析构函数做一份空实现。
+
+```C++
+class AWOV
+{
+  ...
+  virtual ~AWOV() = 0;//声明
+}
+
+AWOV::~AWOV(){} //定义
+```
 
 
 
 
-19、静态类型、动态类型、静态绑定、动态绑定
+
+
+
+##### 19、静态类型、动态类型、静态绑定、动态绑定
 
 静态类型 static type：在程序中声明时的类型，即使是指针，不管它真正指向什么，静态类型在声明时就已经决定了！
 
@@ -351,7 +367,7 @@ function统一了调用形式，bind可以转变可调用对象，那么利用�
 
 
 
-20、vector的operator[]
+##### 20、vector的operator[]
 
 Portable programs should never call this function with an argument n that is out of range, since this causes **undefined behavior**
 
@@ -365,7 +381,7 @@ map是会直接为该key值使用默认构造函数构造一个对应的value值
 
 
 
-21、左值与右值
+##### 21、左值与右值
 
 右值可以赋给左值，左值同样可以赋给左值，左值有明确的内存位置，而右值只是一个临时变量，如表达式结果等均属于临时变量，即右值；
 
@@ -379,7 +395,9 @@ map是会直接为该key值使用默认构造函数构造一个对应的value值
 
 
 
-22、std::move是将当前对象转变为右值，而右值是个临时对象，当调用其移动构造时，其资源会全部移动给另一个，本身资源清空，所以可以很方便，不用再对当前对象做clear
+##### 22、std::move
+
+std::move是将当前对象转变为右值，而右值是个临时对象，当调用其移动构造时，其资源会全部移动给另一个，本身资源清空，所以可以很方便，不用再对当前对象做clear
 
 ```c++
 vector<int> level;
@@ -397,7 +415,7 @@ res.push(std::move(m));//m之后会被清空为初始值0；初始值是0吗？�
 
 
 
-23、指针、指针引用
+##### 23、指针、指针引用
 
 写翻转二叉树题目，没有使用最直接的递归，而是外面套了一层函数，然后内部递归，居然出现了root的左右子节点在的确发生了交换后，又恢复了原状，而在直接原函数递归中没有此问题；参考了下评论中的一些解法，函数参数改用指针引用后解决问题；
 
@@ -435,13 +453,13 @@ TreeNode *invertTree(TreeNode *root)
 
 原因就在于函数参数的值传递，一般传入指针是为了通过指针去修改指向的变量，而对于函数内使用的指针本身，其实是一个拷贝到的指针副本，你对于指针本身的操作就是在这个局部变量上操作，所以离开Reverse作用域之后，交换的指针就失效了。
 
-swap为什么可以在作用域内对指针完成交换，因为swap是函数模板，其参数是T&，所以传入指针后，其参数变为`TreeNode*&`而不是指针。
+swap为什么可以在Reverse作用域内对指针完成交换，而不是离开swap函数本身作用域就失效，因为swap是函数模板，其参数是T&，所以传入指针后，其参数变为`TreeNode*&`而不是指针。
 
 指针引用`int* &`代表这个指针的别名，和普通引用没有区别，只不过这个别名是一个指针的，如此之后，对该指针的操作将不再是副本操作！！
 
 
 
-24、static的理解 
+##### 24、static的理解 
 
 static代表静态，在类内定义了static，说明这个变量或者函数是归属于整个类的，不是类对象；
 
@@ -449,7 +467,7 @@ static代表静态，在类内定义了static，说明这个变量或者函数�
 
 
 
-25、结构体对齐问题
+##### 25、结构体对齐问题
 
 为提高CPU运行速度等，编译器会对结构体做内存对齐，如
 
@@ -469,7 +487,7 @@ PS：一般对齐和CPU及OS有关，一般和指针大小一样，如`sizeof(in
 
 
 
-26、手动释放容器或string等的内存
+##### 26、手动释放容器或string等的内存
 
 有时，某容器可能在程序生命周期内一直存在，但是其内部的数据可能会清空，然后继续push_back，如此反复，就有可能导致容器的capacity一直会变大，即占用内存会变大，而即使数据清空后，capacity也不会降低，但是又没有析构，导致内存占用，所以需要手动将容器中的值清空。
 
@@ -480,7 +498,7 @@ PS：一般对齐和CPU及OS有关，一般和指针大小一样，如`sizeof(in
 
 由于内存的重新分配，会导致原来的迭代器和引用全部失效！！
 
-以上针对string也同理。
+以上针对string也同理，不过在string上使用swap会使迭代器、指针、或引用变为无效（？？？其他容器不会吗？除了string之外，的确不会。来自effective stl，**待查**）。
 
 ```c++
 vector<string> chosen_values;
@@ -491,6 +509,80 @@ void ClearCache()
   //Or
   vector<string> tmp_vec;//临时变量，会在函数结束时释放内存
   chosen_values.swap(tmp_vec);
+}
+```
+
+
+
+##### 27、map的key是不可以修改的，所以`map<string, int>`的`value_ype`中对原有的key是常量
+
+```C++
+template<
+class Key,
+class T,
+class compare = std::less<Key>,
+class Allocator = std::allocator<std:pair<Key, T>>
+>map;
+
+key_type     ==>    Key // key
+mapped_type  ==> 	T   //实际自认为的value
+value_type   ==>	std::pair<const Key, T> // map取得的value是pair，其中key const !!!
+```
+
+
+
+##### 28、list迭代器
+
+list的迭代器属于双向迭代器，所以不支持+n操作，所以不能够直接`list_.begin() + n`
+
+##### 29、所谓迭代器失效问题
+
+迭代器是为了方便容器内部的遍历而产生，指针就是一种迭代器，所以在某些时候，可以将指针的一些概念替换到迭代器中以方便理解，如所谓迭代器失效问题，理解为指针就是空悬指针，即指针指向的地址空间已经被释放或者未定义；那么再回到迭代器，就是迭代器指向的位置已经被释放，指向的地址已经不是你最初赋值时的那个含义或者干脆就是一块越界的内存区域。
+
+而此类情况常常发生在容器的插入、删除操作之后，**删除之后一般那个迭代器就是失效了**（list不会），有时候就是对插删操作的返回值理解不透彻所导致的，如erase操作很多时候都返回删除元素的下一个位置，如果删除位置是容器末尾，那就返回end()，此时如果无脑`++iter`，就会跳过后一个元素直接到第二个元素位置。
+
+map中同样存在此问题，而且有些stl实现的map容器的erase设计是返回null，即不返回被删除元素的后一个迭代器，此时情况也不同。
+
+vector是高效的动态数组，当其`capacity`满时会触发扩容，一般新的capacity是原有的两倍，会在内存中重新开辟一块区域并把原本的元素拷贝进去，但是**扩容前的迭代器将会全部失效**，因为他们相当于指针（其实vector的迭代器就是原生指针），指向着旧的内存区域，如capacity满之后，在iter处插入num，插入成功后，在调用此iter将导致未定义的行为。
+
+list的迭代器不会出现失效问题，它是双向链表设计。
+
+
+
+所以对于所使用的**STL实现**，**删除或者插入操作的具体实现**，**返回值**都需要深入理解。
+
+```C++
+vector<int> nums{1, 2, 4, 6, 7};
+
+vector<int>::iterator iter = nums.begin();
+//删除nums中的偶数
+while (iter != nums.end())
+{
+  if (*iter % 2 == 0)
+  {
+    iter = nums.erase(iter);// 此时的iter已经指向被删除元素的后一个元素了
+  }
+  else// 如果没有这个else，而是全部都++iter，将会跳过后一个元素！!
+  {
+    ++iter;
+  }
+}
+
+
+// example 2
+// 如果map的erase不返回(当前使用的map实现似乎是返回下一个元素的iterator)
+for (pos = coll.begin(); pos != coll.end(); )
+{
+  if (pos.second == val)
+  {
+    coll.erase(pos++);//erase时传入pos迭代器的副本，pos本身直接指向后一个元素
+    //如果不处理，将会导致pos迭代器失效，之后哪怕是只操作 ++pos
+    //也会导致未定义的行为undefined behaviour
+  }
+  else
+  {
+    ++pos;
+  }
 }
 ```
 
