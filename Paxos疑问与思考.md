@@ -75,3 +75,29 @@ paxos和paxos lease相比较之下，有一个区别在于定时器的设置，p
 不过，如此操作下的确存在定时器重叠和冗余现象
 
 
+
+
+
+9、
+
+**关键为，持久化的paxos id是上一轮或者进入P1、P2阶段的实例号，如果在next round之前崩溃，新的实例又没有主动提高实例号，会导致以旧的实例号发出提案，产生previous accept；所以关键还是在于如何处理客户端的请求，在什么时机将客户端的请求Append，KS里是在OnLearnChosen处，不过第一次实例的Propose发生在何处？？**
+
+假设场景，leader经过P1阶段，P2阶段时acceptor已经半数以上同意，但是此时leader在收到propose response之前故障下线，即propose response发送失败，此时acceptor中已经持久化了此实例的value；那么当选举完成后，新的节点当选leader，收到客户端发出的新的Propose，由于follower中实例号未经过nextpaxosround，所以实例号应该没有变化，那么新的propose的value会被上一轮的value顶替。
+
+此现象合理吗？要如何优化？选举成功后马上跑一轮？或者带着新的实例value同时跑一轮？
+
+
+
+10、
+
+当前acceptor 状态持久化使用trunc，导致每次启动都会将上次持久化的数据清空，建议改为单纯写入，append的话还是需要自己记录一个长度信息，找到最新一次实例。但是如此的话，会导致持久化数据无限增长？？之前想过trunc和另一个纯read的fd合作，但是无论如何trunc都会清空文件！！如果在新的持久化之前发生故障，而此时上一次的持久化数据以及被删除，会发生问题！！
+
+而且选择持久化整个acceptor state以及paxos id，accepted也会被持久化，导致影响下次实例  previous accepted！！如果是未能chosen的实例那刚好，但如果之前是正常退出呢？
+
+
+
+11、
+
+搞清楚文件读写的原理，open多次得到的fd并不是同一个，close与否的影响
+
+[(23条消息) 同一个进程内open两次同一文件并读写_北极星_KK的博客-CSDN博客_open两次](https://blog.csdn.net/wys7250578/article/details/51752156)

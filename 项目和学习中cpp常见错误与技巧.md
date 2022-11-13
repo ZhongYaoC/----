@@ -42,6 +42,86 @@ p = NULL;
 
 ##### 3、 static成员的使用
 
+static成员存放在数据段或者代码段，而类对象存放在堆或者栈区；故static成员的生命周期为整个程序的生命周期
+
+类内static可以修饰成员变量（常量、指针、引用、类类型等）和函数，可声明为public或者private
+
+类的静态成员存在于任何对象之外，而静态成员函数同样不和任何对象绑定在一起，它们不包含this指针（显式和隐式均不包含），且静态成员函数不能声明为const
+
+定义static成员函数时，可以在类内也可在类外，但static关键字只出现在类内声明处
+
+通常static数据成员不应在类内初始化，因为static成员不是在创建类对象时被定义的，即不是由类的构造函数初始化（PS：在编译、链接期间已经分配，data、bss、common段）。static数据成员的初始化可在任意函数外面，不过一般是在cpp中，防止多次定义。
+
+不过，可以在类内为static数据成员提供const整数类型（int、double、bool等）的类内初始化，但是如果需要此成员的引用或者地址或者因某些编译器原因，还是需要在类外部定义以下此成员，但仅定义不用指定初值
+
+
+
+```C++
+// .h声明文件
+
+class Account
+{
+  private:
+  	static double rate_; // 基准利率
+ 	static const int len = 10; // 整数类型的static常量可在类内初始化
+  	// Or
+  	static constexpr int len = 10;
+  	double nums_[len]; // 从而可用在此类场景
+  
+  	std::string name_;
+  	double amount_;
+  
+  private:
+  	static double InitRate();
+  public:
+   	void calculate();
+  	static double rate();
+  	static void rate(double);
+};
+
+
+// .cpp定义文件
+
+double Account::rate_ = InitRate(); // 类外定义
+
+const int Account::len;
+constexpr int Account::len;
+
+double InitRate() // 定义时没有static关键字
+{
+  return 0;
+}
+```
+
+##### 3、局部静态对象 local static object
+
+函数内部定义的对象如果没有初始值，就会执行默认初始化，所以函数内部的staic对象如果没有初始值会执行默认初始化，而local static 和 其他local区别在于，一旦定义，它的生命周期将会直到程序终止。
+
+```C++
+// 个人感觉反直觉
+size_t count_calls()
+{
+  static size_t ctr = 0;
+  return ++ctr;
+}
+
+int main()
+{
+  // 将会输出 1 - 10 ，而不是每次都重新初始化！！
+  for (size_t i = 0; i != 10; ++i)
+  {
+    cout << count_calls() << endl;
+  }
+  return 0;
+}
+```
+
+
+
+
+
+
+
 
 
 ##### 4、慎用memcpy
@@ -461,7 +541,7 @@ swap为什么可以在Reverse作用域内对指针完成交换，而不是离开
 
 ##### 24、static的理解 
 
-static代表静态，在类内定义了static，说明这个变量或者函数是归属于整个类的，不是类对象；
+static代表静态，在类内定义了static，说明这个变量或者函数是归属于整个类的，不是各个类对象；
 
 所以类内静态函数中不能调用类内变量，类内变量属于某个类对象，而不会是整个类，所以静态函数不能调用非静态成员！
 
