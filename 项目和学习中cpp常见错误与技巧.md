@@ -666,3 +666,36 @@ for (pos = coll.begin(); pos != coll.end(); )
 }
 ```
 
+
+
+
+
+##### 30、中文字符串的size问题
+
+```C++
+std::string str("中文小测试");
+std::cout << str.size() << std::endl;
+// 将会输出15，即一个中文字符占3字节
+// 而查看 cpp reference，size / length函数的返回为
+// Returns the number of CharT elements in the string
+// string ==> basic_string<char>
+// 即返回字节数，而不是字符数量
+std::cout << str[0] << std::endl;
+// 输出也会错误，它只会输出第一个字节，而第一个字节根本不是中文，只是“中”的一部分
+const char* cstr = str.c_str();
+// 可以看出每个字符的字节组成！
+
+
+
+
+// 使用char32_t组成的string
+// size()输出将是正确的
+// 但是str[]将会输出第一个char32_t的int值，因为ASCII编码只适合单字节的char
+std::u32string str(U"中文测试");
+std::cout << str.size() << std::endl;
+std::cout << str[0] << std::endl;
+
+```
+
+在某些涉及逐字节拷贝的场景中可能出现错误
+
