@@ -71,7 +71,7 @@ race condition：多个线程同时抢先运行
 
 deadlock：多个线程之间相互等待
 
-1、用互斥保护共享数据
+##### 1、用互斥保护共享数据
 
 使用互斥时，建议不要在锁所在的作用域外传递指针或引用，指向受保护的数据；无论是通过函数返回值将它们（指针或引用）保存，还是将它们作为函数的参数传递出去。因为这些指针或引用可以直接操作数据，而没有锁的限制。
 
@@ -103,7 +103,7 @@ STL暂未提供层次锁，自定义实现类中实现lock、unlock、try_lock�
 
 
 
-2、除互斥以外的保护共享数据的工具
+##### 2、除互斥以外的保护共享数据的工具
 
 以往单例返回指针使用两阶段锁方式，但两阶段锁仍然有data race风险，C++11提供了`std::call_once` `std::once_flag`，用以实现只会被初始化一次。
 
@@ -173,7 +173,7 @@ SomeClass& GetInstance()
 
 场景：线程A等待线程B某项事件的完成
 
-1） 条件变量
+##### 1） 条件变量
 
 线程之间共享某状态信息，当一个线程A结束使得状态发生变化时，另一个线程B响应；
 
@@ -199,17 +199,73 @@ std::unique_lock<std::mutex> lk(mu_); // 因为线程等待期间会解锁，而
 // wait 会先检查条件是否成立，如果成立(断言返回true)，则继续运行（保持锁状态）
 // 如果断言不成立(返回false)，则解锁，并使得线程等待/阻塞
 condition_variable.wait(lk, [](){return !q.empty();});
+
+
+wait(lock, predicate);
+// 等价于 ===>
+while (!pred()) 
+{
+  // 使用 while， 而非if， 防止伪唤醒
+    wait(lock); // 参数中没有断言
+}
 ```
 
-条件变量的wait实现中可能使用忙等待，即不断循环检测条件是否成立，不成立就解锁，下次检查是再次加锁；而这种不断查验条件是否成立的方式，如果不影响到另一个线程的话（因为检查条件是否成立的函数中可能影响另外的线程），称之为**伪唤醒**。
+条件变量的wait实现中可能使用忙等待，即不断循环（while）检测条件是否成立，不成立就解锁，然后陷入阻塞，下次解除阻塞时再次加锁；
+
+~~而这种不断查验条件是否成立的方式，如果不影响到另一个线程的话（因为检查条件是否成立的函数中可能影响另外的线程），称之为**伪唤醒**。~~
+
+如果线程B重新获得锁，然后检查条件，但是此时条件（断言）没有成立，就说明此次是**伪唤醒**。
+
+> 伪唤醒 spurious wakeup
+>
+> A **spurious wakeup** happens when a thread wakes up from waiting on a [condition variable](https://en.wikipedia.org/wiki/Condition_variable) that's been signaled, only to discover that the condition it was waiting for isn't satisfied. It's called spurious because the thread has seemingly been awakened for no reason. But spurious wakeup don't happen for no reason: they usually happen because, in between the time when the condition variable was signaled and when the waiting thread finally ran, another thread ran and changed the condition. There was a [race condition](https://en.wikipedia.org/wiki/Race_condition) between the threads  
+>
+> [Spurious wakeup - Wikipedia](https://en.wikipedia.org/wiki/Spurious_wakeup)
+>
+> 当一个等待条件变量并阻塞的线程收到信号被唤醒之后，然后发现这个被唤醒的线程发现它的条件断言并没有被满足。按道理来说每一个被唤醒的线程都是条件被满足之后才唤醒，但是现在发现条件没有满足，那就是一种伪唤醒。
+>
+> 造成伪唤醒的原因通常是线程之间的条件竞争，即在阻塞线程被信号唤醒时，其他线程提前运行，并修改了条件，导致对当前线程而言条件再次不满足。如线程安全的队列，多个线程同时pop，而当队列中有数据时，通知这些线程，这些线程同时收到信号，然后唤醒，但只有一个线程会优先占有锁，从而操作队列，将数据从队列中取出，这是可能再次导致队列为空，那么当这个优先运行的线程解锁后，别的线程就会发现它的条件又不满足了，队列里根本没有数据。所以如果使用没有断言的wait重载函数，就需要自己写while(!pred)判断，防止被这种伪唤醒影响，从而出现未定义错误，如对空队列做pop。
 
 
 
-2）future
+
+> Atomically unlocks `lock`, blocks the current executing thread, and adds it to the list of threads waiting on *this. The thread will be unblocked when [notify_all()](notify_all.html) or [notify_one()](notify_one.html) is executed. It may also be unblocked spuriously. When unblocked, regardless of the reason, `lock` is reacquired and `wait` exits.
+>
+> Note that `lock` must be acquired before entering this method, and it is reacquired after `wait(lock)` exits, which means that `lock` can be used to guard access to `pred()`.
+>
+> 首先，在wait调用之前，必须保证已经加锁；进入wait之后，会先解锁，然后阻塞线程，把线程放入都等待信号量的队列中，当收到notify_one/all之后，线程被唤醒，然后重新加锁，wait函数退出。
+>
+> 先解锁是为了让其他同时等待同一个条件变量的线程可以操作，而线程唤醒后，退出函数前又加锁，是为了保证你的条件断言正常判断。
+>
+> 某种意义上，wait(lk)就等于
+>
+> ```C+++
+> wait(lk)
+> // ===>
+> {
+>   lk.unlock();
+>   // 阻塞 block
+>   // 结束阻塞 unblock
+>   lk.lock();
+> }
+>
+> ```
+>
+> 
+
+> The notifying thread does not need to hold the lock on the same mutex as the one held by the waiting thread(s); in fact doing so is a pessimization, since the notified thread would immediately block again, waiting for the notifying thread to release the lock.
+>
+> 之前有一个误区，认为notify之前也需要对wait处的同一个mutex加锁，但其实不是，这种处理只是一种保守处理方式，因为被notify的这个线程会马上阻塞，等待通知线程去解锁。
+>
+> [std::condition_variable::notify_all - cppreference.com]()
+
+
+
+##### 2）future
 
 上述条件变量的使用中，线程被唤醒之后都会去检测条件是否成立；但是很多情况下，线程只会被唤醒一次，即线程B只需要从线程A中获取一次，如拿到某个结果值，之后就不需要等待线程A的结果，那么使用条件变量显得略为“沉重”，所以配合future使用来等待此类一次性事件发生。
 
-2-1）async()
+###### 2-1）async()
 
 STL提供`std::async()`来获取future对象，`std::async()`接受可调用对象及其参数作为参数（类似`std::function`），并返回一个`std::future<>`对象，`std::future<>`的特化类型取决于`std::async()`的可调用对象的返回类型。
 
@@ -233,7 +289,7 @@ std::future<int> res = std::async(std::launch::async, some_function(), 38);
 
 
 
-2-2）packaged_task<>
+###### 2-2）packaged_task<>
 
 可以看出`std::async()`非常“轻量化”，那么`std::packaged_task<>`就是对前者的一种抽象化表示，`std::packaged_task<>`是个类模板，模板参数为函数签名（相当于可调用对象），它的成员函数`get_future()`返回`std::future<>`对象，利用`std::packaged_task<>`可以将各种可调用对象抽象化，进而配合线程池等使用。
 
@@ -268,7 +324,7 @@ std::cout << "task_thread " << res.get() << std::endl;
 
 
 
-2-3）promise
+###### 2-3）promise
 
 通过将`std::promise<T> `和`std::future<T>`一一对应，`std::promise<T> `调用成员函数`get_future()`可获取对应的`std::future<T>`，然后线程可以阻塞在`std::future<T>`上，直到`std::promise<T>`通过`set_value(xx)`设置结果值，`std::future<T>`才会继续运行，相当于`std::promise<T> set_value`发送信号给对应的`std::future<T>`使之就绪，将`std::promise<T>`放置到另一个线程中，就可以实现跨线程的同步。
 
@@ -287,13 +343,13 @@ barrier_future.wait();
 new_work_thread.join();
 ```
 
-2-4）异常
+###### 2-4）异常
 
 首先，异常将会存放在`std::future`中，如果任务在执行过程中出现抛出异常，那么此异常将会存放在`std::future`中，在`std::future get()`被调用时，此异常将会被重新抛出
 
 `std::async `、`std::packaged_task<>`、`std::promise<T>`均是如此，只不过`std::promise<T>`中需要手动的`set_exception(std::exception_ptr)`（一如其手动`set_value()`一样）来设置对应异常。
 
-2-5）多线程同时等待
+###### 2-5）多线程同时等待
 
 上述描述中，均为一个线程等待future的就绪，也只允许一个线程等待结果；如果需要多个线程同时等待同一个目标结果，就要使用`std::shared_future`。
 
@@ -328,7 +384,7 @@ auto sf = p.get_future().share();
 
 
 
-3）时钟类
+##### 3）时钟类
 
 C++11中引入了`std::chrono`类，提供时间和日期的一些工具。
 
@@ -344,7 +400,11 @@ C++11中引入了`std::chrono`类，提供时间和日期的一些工具。
 
 之前提到的条件变量、future等特性中的`wait`函数均提供有两个超时函数，`wait_for()`、`wait_until()`，就像其名字一样，前者说明等待一段时间后停止阻塞/等待，后者是等到达某个时间点时停止阻塞/等待。
 
-> 条件变量的wait_for，如果在等待的时间快消耗完时发生伪唤醒，但条件断言未成立，即继续等待，那么会重新开始一次完整的等待，这样有可能导致无限等待下去！！
+> 条件变量的wait_for，如果在等待的时间快消耗完时发生伪唤醒，~~但条件断言未成立，即继续等待，那么会重新开始一次完整的等待，这样有可能导致无限等待下去！！~~
+>
+> 上面的理解完全错误。
+>
+> 条件变量的wait_for如果使用，建议加上断言，或者自行处理伪唤醒，否则会被伪唤醒影响。
 
 
 
@@ -362,7 +422,7 @@ C++11中引入了`std::chrono`类，提供时间和日期的一些工具。
 
 
 
-4）运用同步操作简化代码
+##### 4）运用同步操作简化代码
 
 4-1）函数式编程 functional programming
 
@@ -381,6 +441,44 @@ C++11中引入了`std::chrono`类，提供时间和日期的一些工具。
 每个线程将拥有各自的消息发送器和消息接收器（发送方将消息放入队列，然后由分发器分发，即从队列取出并执行），以及当前的状态（这个状态可以是成员函数，线程run运行此状态函数），线程无限循环的运行当前的状态函数，状态函数内部根据收到的不同的消息类型，可能会修改当前的状态，进而使得线程转而运行其他状态函数，新的状态函数又会继续执行上述操作。不同的消息种类用独立的struct类型表示。
 
 PS：和reactor的网络通信模型有共同之处，都需要一个消息分发器，交由不同的消息处理实例。不过，网络模型中，线程之间的消息传递不再是本地的线程，而是跨地域跨设备的线程，需要考虑更多的异常。
+
+
+
+#### 第九章 线程池
+
+简易的线程池：所有线程共用一个任务队列，然后这个共有任务队列要求是线程安全（如每个操作是互斥的，用条件变量唤醒等），每个线程内部的循环需要做的就是：从任务队列中取出任务，然后执行。（任务就是可调用对象喽）当然，还需要对外提供向任务队列添加任务的接口，如果此接口返回future，那么任务添加方可以等待任务的完成，获取其结果值。
+
+改进：
+
+线程池内除了共有的任务队列，每个线程拥有一个独有（`thread_local`）的任务队列（独立任务队列不需要线程安全），添加任务时，如果独有的任务队列存在，则优先放入独立的任务队列，否则才会放入共有任务队列。同样的，当线程独有的任务队列为空，那么才会去检查共有任务队列中的任务。但是这样会导致，某些线程非常忙碌，而有些线程非常空闲。
+
+> `thread_local`关键字对程序内部的所有线程一视同仁，也就说所有的线程都会有一个独有的任务队列指针（此处为书中的具体实现），不论是线程池内，池外的线程。
+>
+> 只不过，池内的线程会做指针的具体初始化，而池外的线程仅仅拥有一个未初始化的指针罢了，通过这种保存thread_local修饰的指针的方式，也实现了节约空间的作用。
+
+
+
+所以，线程之间可以增加任务窃取，即空闲线程从忙碌线程处窃取任务。为实现窃取，首先线程池需要监测每个线程内部的独有任务队列，或者由线程池负责配置它们的任务队列（由线程池来负责独有任务队列的初始化，不再是线程内部自行初始化），然后这些任务队列需要支持取出（如push和pop均在队列前端完成，其他线程取出在队列后端完成）
+
+
+
+中断线程：
+
+当一个线程运行很长时间，长期占用资源时，可能希望从外部打断这个线程，那么可以包装thread类，让其对外提供一个中断的接口，调用此接口即意味着希望线程中断。
+
+而收到中断要求之后，正在运行的线程函数中可以增加一个检查是否中断的函数，当需要中断，就抛出异常，而线程运行处捕获此异常，从而实现中断。
+
+要点：
+
+1、外部线程修改另一个线程的内部状态（是否中断的状态标记位）
+
+可以使用线程独有变量，`thread_local`，从外部直接修改
+
+2、线程可能阻塞在各种地方，如阻塞在条件变量、阻塞在future、阻塞在加锁的地方等，要针对不同的可能阻塞，做不同的处理
+
+3、如果线程没有阻塞，只是单纯的想中断，那么就像最开头说的那样，改一下线程运行函数，增加判断是否中断，然后抛异常就好
+
+PS：个人觉得很多情况下，与其外部中断，不如利用好wait_for等函数，要求只能阻塞一段时间，而不是无限阻塞
 
 
 
